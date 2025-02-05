@@ -5,14 +5,29 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.19.0",
     "@types/express": "^5.0.0",
-    "typescript": "^5.7.3"
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "git-format-staged": "^3.1.1",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "3.4.2",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.23.0"
   },
   "dependencies": {
     "express": "^4.21.2"
