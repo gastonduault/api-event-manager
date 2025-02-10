@@ -8,6 +8,7 @@ RUN npm install
 
 COPY . /code
 
+RUN npm run setup_prisma
 CMD ["npm", "run", "start"]
 
 EXPOSE 3000

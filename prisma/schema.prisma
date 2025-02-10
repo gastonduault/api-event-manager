@@ -13,8 +13,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String?
+  firstname     String?
+  lastname String?
+  isAdmin Boolean
+  events Event[]
+  participations Participation[]
+}
+
 model Event {
   id         Int      @id @default(autoincrement())
   name        String
   description String?
+  startDate   DateTime
+  endDate     DateTime?
+  location   String?
+  maxParticipants Int?
+  picture    String?
+  isModerate Boolean
+  responsableId Int
+  responsable User @relation(fields: [responsableId], references: [id])
+  typeId Int
+  type Type @relation(fields: [typeId], references: [id])
+  participants Participation[]
 }
+
+model Type {
+  id         Int      @id @default(autoincrement())
+  name        String
+  events Event[]
+}
+
+model Participation {
+  userId Int
+  eventId Int
+  user User @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
+  @@unique([userId, eventId])
+}
+
+
+
