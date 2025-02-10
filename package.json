@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "husky"
+    "prepare": "husky",
+    "setup_prisma": "prisma db push && prisma generate && echo Prisma setup done! || echo Prisma setup failed!"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
