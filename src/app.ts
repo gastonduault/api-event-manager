@@ -1,11 +1,11 @@
 import express from "express";
 import setupSwagger from "./swaggerConfig";
-import eventRoutes from "./routes/event";
+import eventRoutes from "./routes/events";
 const app = express();
 const port = 3000;
 
 setupSwagger(app);
-
+app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
