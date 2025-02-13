@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
     "setup_prisma": "prisma db push && prisma generate && echo Prisma setup done! || echo Prisma setup failed!"
@@ -19,13 +19,16 @@
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.8",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "git-format-staged": "^3.1.1",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "nodemon": "^3.1.9",
     "prettier": "3.4.2",
     "prisma": "^6.3.1",
     "typescript": "^5.7.3",
@@ -33,6 +36,9 @@
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
-    "express": "^4.21.2"
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "ts-node": "^10.9.2"
   }
 }
