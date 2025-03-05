@@ -1,14 +1,12 @@
 FROM node:20-alpine
 
+RUN mkdir code
 WORKDIR /code
-COPY package.json /code/package.json
-COPY package-lock.json /code/package-lock.json
+
+COPY . .
 
 RUN npm install
 
-COPY . /code
-
-RUN npm run setup_prisma
-CMD ["npm", "run", "start"]
+CMD ["sh", "-c", "npm run setup_prisma && exec npm start"]
 
 EXPOSE 3000

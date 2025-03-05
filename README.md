@@ -33,17 +33,21 @@ Event Manager API is a backend application built with **Node.js**, **Express**, 
 
 ## 🛠 Installation
 
-### Install dependencies
+### With NPM
 
 ```sh
 npm install
 ```
 
-### Run the server
-
 ```sh
 npm run start
 ```
+
+### With Docker
+
+docker compose up --build -d
+docker compose exec -it api sh  
+docker compose exec db psql -U postgres -d event_manager
 
 ## 🔥 API Endpoints
 
