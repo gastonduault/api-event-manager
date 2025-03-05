@@ -11,12 +11,16 @@ const swaggerDefinition = {
   },
   tags: [
     {
-      name: "User",
-      description: "User management",
+      name: "Users",
+      description: "Users management",
     },
     {
       name: "Events",
       description: "Events management",
+    },
+    {
+      name: "Types",
+      description: "Types management",
     },
   ],
 };
