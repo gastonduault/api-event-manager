@@ -42,7 +42,7 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "swagger-jsdoc": "^6.2.8",
