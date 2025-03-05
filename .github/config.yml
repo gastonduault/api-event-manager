@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/gastonduault/api-event-manager
+    about: Please check the documentation before opening an issue.
+
+issue_templates:
+  - name: "Feature Request"
+    description: "Suggest a new feature for the project."
+    labels: ["enhancement"]
+    file: ISSUE_TEMPLATE/feature_request.md
+
+pull_request_templates:
+  - name: "Feature PR"
+    description: "Template for new feature pull requests."
+    file: PULL_REQUEST_TEMPLATE.md
+
