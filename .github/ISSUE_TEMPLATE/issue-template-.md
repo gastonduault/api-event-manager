@@ -1,7 +1,10 @@
 ---
+name: 'Issue Template '
+about: Classical issue template for the project
 title: "[Feature] Brief description of the feature"
-labels: [feature]
-assignees: ""
+labels: ''
+assignees: ''
+
 ---
 
 ## 📌 **Description**
