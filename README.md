@@ -33,28 +33,55 @@ Event Manager API is a backend application built with **Node.js**, **Express**, 
 
 ## 🛠 Installation
 
-### With NPM
+### With NPM and Docker
+
+Run the postgres service
+
+```sh
+docker compose up -d --build db
+```
+
+Install the dependencies
 
 ```sh
 npm install
 ```
 
+Connect and setup the prisma ORM with the bdd
+
+```sh
+npm run setup_prisma
+```
+
+Run the Express API
+
 ```sh
 npm run start
 ```
 
-### With Docker
+### CMD Docker
 
+Run the project ONLY with docker
+
+```sh
 docker compose up --build -d
-docker compose exec -it api sh  
+```
+
+Connect to the Express service
+
+```sh
+docker compose exec -it api sh
+```
+
+Connect to the Postgresql service
+
+```sh
 docker compose exec db psql -U postgres -d event_manager
+```
 
-## 🔥 API Endpoints
+## 🔥 API Documentation
 
-| Method | Endpoint      | Description        |
-| ------ | ------------- | ------------------ |
-| GET    | `/events`     | Get all events     |
-| POST   | `/events`     | Create a new event |
-| GET    | `/events/:id` | Get event details  |
-| PUT    | `/events/:id` | Update an event    |
-| DELETE | `/events/:id` | Delete an event    |
+You can access to the swagger of the API with this link:
+[http://localhost:3000/docs/](http://localhost:3000/docs/)
+
+> The API need to be started
