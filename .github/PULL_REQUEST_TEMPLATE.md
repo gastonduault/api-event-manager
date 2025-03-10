@@ -1,7 +1,9 @@
 ---
-title: "[Merge Request] Brief description of the changes"
-labels: [merge request]
-assignees: ""
+name: 'Pull Request Template '
+about: Classical PL template for the project
+title: "[Feature] Brief description of the feature"
+labels: ''
+assignees: ''
 ---
 
 ## 📌 **Description**
