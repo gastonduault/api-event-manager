@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { prisma } from "../prismaClient";
+import { EventController } from "../controllers/events.controller";
 
 const router = Router();
 
@@ -26,14 +27,7 @@ const router = Router();
  *
  */
 
-router.get("/events", async (req: Request, res: Response) => {
-  try {
-    const events = await prisma.event.findMany();
-    res.status(200).send(events);
-  } catch (error) {
-    res.status(500).send({ error: "Internal server error" });
-  }
-});
+router.get("/events", EventController.getEvents);
 
 /**
  * @swagger

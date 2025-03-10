@@ -40,7 +40,7 @@ router.post("/types", async (req: Request, res: Response) => {
 
     res
       .status(201)
-      .json({ message: "Type created successfully", user: newType });
+      .json({ message: "Type created successfully", type: newType });
   } catch (error) {
     console.error("Error creating type:", error);
     res.status(500).json({ error: "Failed to create type", details: error });
