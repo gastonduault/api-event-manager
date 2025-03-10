@@ -1,7 +1,9 @@
 import { prisma } from "../prismaClient";
+import { Event } from "../entities/events.entity";
 
 export class EventRepository {
   static async getEvents() {
-    return await prisma.event.findMany();
+    const events = await prisma.event.findMany();
+    return events.map((event) => Event.fromPrisma(event));
   }
 }
