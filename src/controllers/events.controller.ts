@@ -10,4 +10,15 @@ export class EventController {
       res.status(500).send({ error: "Internal server error" });
     }
   }
+
+  static async createEvent(req: Request, res: Response) {
+    try {
+      const eventData = req.body;
+      const newEvent = await EventService.createEvent(eventData);
+      res.status(201).send(newEvent);
+    } catch (error) {
+      console.log();
+      res.status(500).send({ error: "Internal server error", message: error });
+    }
+  }
 }

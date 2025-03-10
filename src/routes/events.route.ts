@@ -60,7 +60,7 @@ router.get("/events", EventController.getEvents);
  *                 example: 1
  *               typeId:
  *                 type: integer
- *                 example: 2
+ *                 example: 1
  *     responses:
  *       201:
  *         description: Event created
@@ -69,46 +69,47 @@ router.get("/events", EventController.getEvents);
  *       500:
  *         description: Server error
  */
-router.post("/events", async (req: Request, res: Response) => {
-  const {
-    name,
-    description,
-    startDate,
-    endDate,
-    location,
-    maxParticipants,
-    picture,
-    isModerate,
-    responsableId,
-    typeId,
-  } = req.body;
-
-  if (!name || !startDate || !responsableId || !typeId) {
-    res.status(400).send({ error: "Missing required fields" });
-    return;
-  }
-  try {
-    const newEvent = await prisma.event.create({
-      data: {
-        name,
-        description,
-        startDate: new Date(startDate), // Conversion en Date
-        endDate: endDate ? new Date(endDate) : null,
-        location,
-        maxParticipants,
-        picture,
-        isModerate: isModerate ?? false, // Valeur par défaut si non fournie
-        responsableId,
-        typeId,
-      },
-    });
-    res
-      .status(201)
-      .json({ message: `Event '${newEvent.name}' created successfully` });
-  } catch (error) {
-    console.error("Error creating event:", error);
-    res.status(500).json({ error: "Failed to create event", details: error });
-  }
-});
+// router.post("/events", async (req: Request, res: Response) => {
+//   const {
+//     name,
+//     description,
+//     startDate,
+//     endDate,
+//     location,
+//     maxParticipants,
+//     picture,
+//     isModerate,
+//     responsableId,
+//     typeId,
+//   } = req.body;
+//
+//   if (!name || !startDate || !responsableId || !typeId) {
+//     res.status(400).send({ error: "Missing required fields" });
+//     return;
+//   }
+//   try {
+//     const newEvent = await prisma.event.create({
+//       data: {
+//         name,
+//         description,
+//         startDate: new Date(startDate), // Conversion en Date
+//         endDate: endDate ? new Date(endDate) : null,
+//         location,
+//         maxParticipants,
+//         picture,
+//         isModerate: isModerate ?? false, // Valeur par défaut si non fournie
+//         responsableId,
+//         typeId,
+//       },
+//     });
+//     res
+//       .status(201)
+//       .json({ message: `Event '${newEvent.name}' created successfully` });
+//   } catch (error) {
+//     console.error("Error creating event:", error);
+//     res.status(500).json({ error: "Failed to create event", details: error });
+//   }
+// });
+router.post("/events", EventController.createEvent);
 
 export default router;
