@@ -11,6 +11,46 @@ const router = Router();
  *     tags:
  *       - Events
  *     description: Get the list of events
+ *     parameters:
+ *       - name: status
+ *         in: query
+ *         required: false
+ *         description: Filter events by status (moderated)
+ *         schema:
+ *           type: string
+ *       - name: type
+ *         in: query
+ *         required: false
+ *         description: Filter events by type ID
+ *         schema:
+ *           type: integer
+ *       - name: startDate
+ *         in: query
+ *         required: false
+ *         description: Filter events starting from this date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: endDate
+ *         in: query
+ *         required: false
+ *         description: Filter events ending before this date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: date
+ *         in: query
+ *         required: false
+ *         description: Filter events by date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: location
+ *         in: query
+ *         required: false
+ *         description: Filter events by location
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: A list of events
