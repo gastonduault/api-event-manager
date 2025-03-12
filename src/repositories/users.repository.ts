@@ -1,5 +1,5 @@
 import { prisma } from "../prismaClient";
-import { User } from "../entities/user";
+import { User } from "../entities/entities.user";
 import { PrismaClient, Prisma } from "@prisma/client";
 
 export class UsersRepository {
@@ -28,6 +28,25 @@ export class UsersRepository {
       ) {
         // P2002 error code for unit
         throw new Error("Email already exists");
+      }
+      throw error;
+    }
+  }
+
+  static async updateUser(userId: number, updatedData: any) {
+    try {
+      const prismaUSer = await prisma.user.update({
+        where: { id: userId },
+        data: updatedData,
+      });
+
+      return User.fromPrisma(prismaUSer);
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        throw new Error("User not found");
       }
       throw error;
     }
