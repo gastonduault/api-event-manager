@@ -1,8 +1,10 @@
 import { prisma } from "../prismaClient";
+import { Event } from "../entities/events.entity";
 
 export class EventRepository {
   static async getEvents() {
-    return await prisma.event.findMany();
+    const events = await prisma.event.findMany();
+    return events.map((event) => Event.fromPrisma(event));
   }
 
   static async createEvent(eventData: {
@@ -17,11 +19,14 @@ export class EventRepository {
     typeId: number;
   }) {
     try {
-      const data = {
-        ...eventData,
-        isModerate: false,
-      };
-      return await prisma.event.create({ data });
+      const prismaEvent = await prisma.event.create({
+        data: {
+          ...eventData,
+          isModerate: false,
+        },
+      });
+
+      return Event.fromPrisma(prismaEvent);
     } catch (error) {
       console.error("Prisma Error:", error);
       throw error;

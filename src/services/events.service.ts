@@ -7,15 +7,15 @@ export class EventService {
 
   static async createEvent(eventData: {
     name: string;
-    description?: string;
     startDate: Date;
+    typeId: number;
+    responsableId: number;
+    description?: string;
     endDate?: Date;
     location?: string;
     maxParticipants?: number;
     picture?: string;
     isModerate: boolean;
-    responsableId: number;
-    typeId: number;
   }) {
     return await EventRepository.createEvent(eventData);
   }
