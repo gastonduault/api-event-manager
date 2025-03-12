@@ -18,13 +18,22 @@ export class Event {
     if (eventData.isModerate === undefined) {
       eventData.isModerate = false;
     }
+
     const schema = Joi.object({
       name: Joi.string().required(),
-      startDate: Joi.date().required(),
+      startDate: Joi.date().iso().min("now").required().messages({
+        "date.min": "startDate must be today or a future date",
+      }),
       typeId: Joi.number().integer().required(),
       responsableId: Joi.number().integer().required(),
       description: Joi.string().optional(),
-      endDate: Joi.date().optional(),
+      endDate: Joi.date()
+        .iso()
+        .min(Joi.ref("startDate"))
+        .messages({
+          "date.min": "endDate must be greater than or equal to startDate",
+        })
+        .optional(),
       location: Joi.string().optional(),
       maxParticipants: Joi.number().integer().min(1).optional(),
       picture: Joi.string().optional(),

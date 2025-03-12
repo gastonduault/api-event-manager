@@ -18,6 +18,7 @@ export class EventController {
       const { error, value } = Event.validate(req.body);
       if (error) {
         console.error("Validation Error:", error.details);
+
         res.status(400).json({
           error: "Validation error",
           message: error.message,
