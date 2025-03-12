@@ -1,0 +1,64 @@
+{
+  "info": {
+    "_postman_id": "d58e53cc-0c59-4b29-aa33-6d0226b82e70",
+    "name": "API Event manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+    "_exporter_id": "43050180"
+  },
+  "item": [
+    {
+      "name": "create user correct",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "localhost:3000/api/users"
+      },
+      "response": []
+    },
+    {
+      "name": "create user correct already exists",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "localhost:3000/api/users"
+      },
+      "response": []
+    },
+    {
+      "name": "create user correct missing an argument",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "localhost:3000/api/users"
+      },
+      "response": []
+    }
+  ]
+}

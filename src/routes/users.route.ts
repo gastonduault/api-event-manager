@@ -1,5 +1,7 @@
 import { Router, Request, Response } from "express";
 import { prisma } from "../prismaClient";
+import { UserController } from "../controllers/users.controller";
+
 const router = Router();
 
 /**
@@ -14,50 +16,15 @@ const router = Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 example: "user@example.com"
- *               password:
- *                 type: string
- *                 example: "securepassword"
- *               firstname:
- *                 type: string
- *                 example: "John"
- *               lastname:
- *                 type: string
- *                 example: "Doe"
- *               isAdmin:
- *                 type: boolean
- *                 example: false
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *         description: User created successfully
  *       400:
  *         description: Missing required fields or email already exists
  */
-router.post("/users", async (req: Request, res: Response) => {
-  try {
-    const { email, password, firstname, lastname, isAdmin } = req.body;
 
-    if (!email || !password) {
-      res.status(400).json({ error: "Email and password are required" });
-      return;
-    }
-
-    const newUser = await prisma.user.create({
-      data: { email, password, firstname, lastname, isAdmin: isAdmin ?? false },
-    });
-
-    res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ error: "Failed to create user", details: error });
-  }
-});
+router.post("/users", UserController.createUser);
 
 /**
  * @swagger
@@ -104,5 +71,27 @@ router.get("/users", async (req: Request, res: Response) => {
     res.status(500).json({ error: "Failed to fetch users", details: error });
   }
 });
+
+/**
+ * @swagger
+ *  components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           example: "user@example.com"
+ *         password:
+ *           type: string
+ *           example: "securepassword"
+ *         firstname:
+ *           type: string
+ *           example: "John"
+ *         lastname:
+ *           type: string
+ *           example: "Doe"
+ *
+ */
 
 export default router;
