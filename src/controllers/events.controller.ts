@@ -80,4 +80,22 @@ export class EventController {
         .json({ error: "Internal server error", message: error.message });
     }
   }
+
+  static async getEventById(req: Request, res: Response) {
+    try {
+      const eventId = parseInt(req.params.id, 10);
+      if (isNaN(eventId)) {
+        res.status(400).json({ error: "Invalid event ID" });
+        return;
+      }
+      const event = await EventService.getEventById(eventId);
+      if (!event) {
+        res.status(404).json({ error: "Event not found or access denied" });
+        return;
+      }
+      res.status(200).json(event);
+    } catch (error) {
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
 }

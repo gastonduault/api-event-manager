@@ -32,4 +32,10 @@ export class EventRepository {
       throw error;
     }
   }
+
+  static async getEventById(eventId: number) {
+    return prisma.event.findUnique({
+      where: { id: eventId },
+    });
+  }
 }
