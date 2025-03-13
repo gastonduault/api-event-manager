@@ -2,8 +2,31 @@ import { prisma } from "../prismaClient";
 import { Event } from "../entities/events.entity";
 
 export class EventRepository {
-  static async getEvents(filters: any): Promise<Event[]> {
-    const { status, type, startDate, endDate, date, location } = filters;
+  static async getEvents(
+    filters: any,
+  ): Promise<{
+    events: Event[];
+    total: number;
+    page: number;
+    pageSize: number;
+  }> {
+    const {
+      status,
+      type,
+      startDate,
+      endDate,
+      date,
+      location,
+      page = "1",
+      pageSize = "10",
+    } = filters;
+
+    // Pagination
+    const pageNumber = Math.max(1, parseInt(page));
+    const pageSizeNumber = Math.max(1, parseInt(pageSize));
+    const limit = pageSizeNumber;
+    const offset = (pageNumber - 1) * pageSizeNumber;
+
     const where: any = {};
     if (status) {
       where.isModerate = status === "moderated";
@@ -49,8 +72,18 @@ export class EventRepository {
     }
     if (location) where.location = location;
 
-    const events = await prisma.event.findMany({ where });
-    return events.map((event) => Event.fromPrisma(event));
+    const events = await prisma.event.findMany({
+      where,
+      take: limit,
+      skip: offset,
+    });
+    const total = await prisma.event.count({ where });
+    return {
+      events: events.map((event) => Event.fromPrisma(event)),
+      total,
+      page: pageNumber,
+      pageSize: pageSizeNumber,
+    };
   }
 }
 

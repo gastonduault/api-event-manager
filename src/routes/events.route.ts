@@ -51,6 +51,23 @@ const router = Router();
  *         description: Filter events by location
  *         schema:
  *           type: string
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         description: Page number
+ *         schema:
+ *          type: integer
+ *          minimum: 1
+ *          default: 1
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         description: Number of items per page
+ *         schema:
+ *          type: integer
+ *          minimum: 1
+ *          maximum: 100
+ *          default: 10
  *     responses:
  *       200:
  *         description: A list of events

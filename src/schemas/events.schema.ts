@@ -7,4 +7,6 @@ export const eventQuerySchema = Joi.object({
   endDate: Joi.string().isoDate().optional(),
   date: Joi.string().isoDate().optional(),
   location: Joi.string().optional(),
+  page: Joi.number().integer().min(1).default(1),
+  pageSize: Joi.number().integer().min(1).max(100).default(10),
 });

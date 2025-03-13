@@ -17,6 +17,8 @@ export class EventController {
         endDate: value.endDate,
         date: value.date,
         location: value.location,
+        page: value.page || 1,
+        pageSize: value.pageSize || 10,
       };
       const events = await EventService.getEvents(filters);
       res.status(200).send(events);
