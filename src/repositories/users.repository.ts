@@ -51,4 +51,19 @@ export class UsersRepository {
       throw error;
     }
   }
+  static async deleteUser(userId: number): Promise<void> {
+    try {
+      await prisma.user.delete({
+        where: { id: userId },
+      });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2025"
+      ) {
+        throw new Error("User not found");
+      }
+      throw error;
+    }
+  }
 }

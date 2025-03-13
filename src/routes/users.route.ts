@@ -65,6 +65,33 @@ router.put("/users/:id", validateUpdateUser, UserController.updateUser);
 
 /**
  * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete an existing user
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the user to delete
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+router.delete("/users/:id", UserController.deleteUser);
+
+/**
+ * @swagger
  *  components:
  *   schemas:
  *     User:

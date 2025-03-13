@@ -48,4 +48,27 @@ export class UserController {
       next(error);
     }
   };
+
+  static deleteUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const userId = parseInt(req.params.id, 10);
+      if (isNaN(userId)) {
+        res.status(400).json({ error: "Invalid user ID" });
+        return;
+      }
+
+      await UsersService.deleteUser(userId);
+      res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+      if (error.message === "User not found") {
+        res.status(404).json({ error: error.message });
+        return;
+      }
+      next(error);
+    }
+  };
 }

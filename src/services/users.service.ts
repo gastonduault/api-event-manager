@@ -31,4 +31,8 @@ export class UsersService {
 
     return await UsersRepository.updateUser(userId, updatedData);
   }
+
+  static async deleteUser(userId: number) {
+    return await UsersRepository.deleteUser(userId);
+  }
 }
