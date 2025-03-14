@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { EventService } from "../services/events.service";
 import { Event } from "../entities/events.entity";
 import { prisma } from "../prismaClient";
+import { eventIdSchema, eventSchema } from "../schemas/events.schema";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -15,18 +16,20 @@ export class EventController {
 
   static async createEvent(req: Request, res: Response) {
     try {
-      const { error, value } = Event.validate(req.body);
+      const { error, value } = eventSchema.validate(req.body, {
+        abortEarly: false,
+      });
       if (error) {
         console.error("Validation Error:", error.details);
 
         res.status(400).json({
           error: "Validation error",
-          message: error.message,
+          details: error.details.map((err) => err.message),
         });
         return;
       }
 
-      const { responsableId, typeId, ...eventData } = req.body;
+      const { responsableId, typeId } = req.body;
 
       //TODO : modify if responsableId or typeId are invalid with the service
 
@@ -83,11 +86,14 @@ export class EventController {
 
   static async getEventById(req: Request, res: Response) {
     try {
-      const eventId = parseInt(req.params.id, 10);
-      if (isNaN(eventId)) {
-        res.status(400).json({ error: "Invalid event ID" });
+      const { error } = eventIdSchema.validate(req.params);
+
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
         return;
       }
+      const eventId = parseInt(req.params.id, 10);
+
       const event = await EventService.getEventById(eventId);
       if (!event) {
         res.status(404).json({ error: "Event not found or access denied" });

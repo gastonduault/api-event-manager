@@ -34,8 +34,13 @@ export class EventRepository {
   }
 
   static async getEventById(eventId: number) {
-    return prisma.event.findUnique({
+    const prismaEvent = await prisma.event.findUnique({
       where: { id: eventId },
     });
+
+    if (!prismaEvent) {
+      return null;
+    }
+    return Event.fromPrisma(prismaEvent);
   }
 }
