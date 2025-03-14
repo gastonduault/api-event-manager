@@ -3,8 +3,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 export class EventService {
-  static async getEvents() {
-    return await EventRepository.getEvents();
+  static async getEvents(filters: any) {
+    return await EventRepository.getEvents(filters);
   }
 
   static async createEvent(eventData: {
