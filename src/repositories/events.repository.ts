@@ -82,6 +82,7 @@ export class EventRepository {
       page: pageNumber,
       pageSize: pageSizeNumber,
     };
+  }
 
   static async createEvent(eventData: {
     name: string;
