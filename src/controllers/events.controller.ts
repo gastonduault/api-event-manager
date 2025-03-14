@@ -23,11 +23,9 @@ export class EventController {
       const events = await EventService.getEvents(filters);
       res.status(200).send(events);
     } catch (error) {
-      if (error.message === "Page not found") {
-        res.status(404).send({ error: "Page does not exist" });
-      } else {
-        res.status(500).send({ error: "Internal server error" });
-      }
+      res
+        .status(500)
+        .send({ error: "Internal server error", message: error.message });
     }
   }
 }

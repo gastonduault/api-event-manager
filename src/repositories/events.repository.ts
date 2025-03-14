@@ -29,7 +29,7 @@ export class EventRepository {
     if (status) {
       where.isModerate = status === "moderated";
     }
-    if (type) where.type = type;
+    if (type) where.typeId = type;
     if (startDate && !endDate) {
       const start = formatDates(startDate, endDate)[0];
       where.startDate = { gte: new Date(start) };
@@ -76,9 +76,6 @@ export class EventRepository {
       skip: offset,
     });
     const total = await prisma.event.count({ where });
-    if (offset >= total) {
-      throw new Error("Page not found");
-    }
     return {
       events: events.map((event) => Event.fromPrisma(event)),
       total,
