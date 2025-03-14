@@ -1,4 +1,4 @@
-import { User } from "../entities/entities.user";
+import { User } from "../entities/users.entitie";
 import { UsersService } from "../services/users.service";
 import { Request, Response, NextFunction } from "express";
 

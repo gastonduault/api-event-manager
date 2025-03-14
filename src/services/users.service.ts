@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { User } from "../entities/entities.user";
+import { User } from "../entities/users.entitie";
 import { UsersRepository } from "../repositories/users.repository";
 
 const JWT_SECRET = process.env.JWT_SECRET;
