@@ -1,6 +1,9 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { User } from "../entities/entities.user";
 import { UsersRepository } from "../repositories/users.repository";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export class UsersService {
   static async createUser(userData: {
@@ -14,17 +17,43 @@ export class UsersService {
       throw new Error(error.details[0].message);
     }
 
-    // user already exist ?
-    const existingUser = await UsersRepository.getUserByEmail(userData.email);
+    // already exist ?
+    let existingUser = await UsersRepository.getUserByEmail(userData.email);
     if (existingUser) {
-      return existingUser;
+      // check email and password for returning a token
+      const isPasswordValid = await bcrypt.compare(
+        userData.password,
+        existingUser.password,
+      );
+
+      if (!isPasswordValid) {
+        const error = new Error("Invalid credentials");
+        (error as any).statusCode = 400;
+        throw error;
+      }
+
+      const token = jwt.sign(
+        { userId: existingUser.id, email: existingUser.email },
+        JWT_SECRET,
+        { expiresIn: "24h" },
+      );
+
+      return { user: User.fromPrismaExternal(existingUser), token };
     }
 
-    // create new user
+    // new user
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const userWithHashedPassword = { ...userData, password: hashedPassword };
 
-    return await UsersRepository.createUser(userWithHashedPassword);
+    const newUser = await UsersRepository.createUser(userWithHashedPassword);
+
+    const token = jwt.sign(
+      { userId: newUser.id, email: newUser.email },
+      JWT_SECRET,
+      { expiresIn: "24h" },
+    );
+
+    return { user: User.fromPrismaExternal(existingUser), token };
   }
 
   static async updateUser(userId: number, updatedData: any) {

@@ -1,5 +1,5 @@
-import { Router, Request, Response } from "express";
 import { prisma } from "../prismaClient";
+import { Router, Request, Response } from "express";
 import { UserController } from "../controllers/users.controller";
 import {
   validateCreateUser,
@@ -14,7 +14,7 @@ const router = Router();
  *   post:
  *     tags:
  *       - Users
- *     summary: Create a new user
+ *     summary: Create or authenticate a user
  *     requestBody:
  *       required: true
  *       content:
@@ -22,10 +22,10 @@ const router = Router();
  *           schema:
  *             $ref: '#/components/schemas/User'
  *     responses:
- *       201:
- *         description: User created successfully
+ *       200:
+ *         description: User authenticated or created successfully
  *       400:
- *         description: Missing required fields or email already exists
+ *         description: Invalid input data
  */
 
 router.post("/users", validateCreateUser, UserController.createUser);
