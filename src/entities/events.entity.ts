@@ -12,6 +12,7 @@ export class Event {
     public isModerate: boolean,
     public responsableId: number,
     public typeId: number,
+    public description: string,
   ) {}
 
   static fromPrisma(prismaEvent: any): Event {
@@ -26,6 +27,7 @@ export class Event {
       prismaEvent.isModerate,
       prismaEvent.responsableId,
       prismaEvent.typeId,
+      prismaEvent.description,
     );
   }
 }
