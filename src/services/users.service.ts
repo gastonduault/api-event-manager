@@ -13,6 +13,14 @@ export class UsersService {
     if (error) {
       throw new Error(error.details[0].message);
     }
+
+    // user already exist ?
+    const existingUser = await UsersRepository.getUserByEmail(userData.email);
+    if (existingUser) {
+      return existingUser;
+    }
+
+    // create new user
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const userWithHashedPassword = { ...userData, password: hashedPassword };
 

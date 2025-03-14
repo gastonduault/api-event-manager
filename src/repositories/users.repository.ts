@@ -102,4 +102,12 @@ export class UsersRepository {
       pageSize: pageSizeNumber,
     };
   }
+
+  static async getUserByEmail(email: string): Promise<User | null> {
+    const prismaUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    return prismaUser ? User.fromPrisma(prismaUser) : null;
+  }
 }
