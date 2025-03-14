@@ -10,3 +10,16 @@ export const eventQuerySchema = Joi.object({
   page: Joi.number().integer().min(1).default(1),
   pageSize: Joi.number().integer().min(1).max(100).default(10),
 });
+
+export const eventSchema = Joi.object({
+  name: Joi.string().required(),
+  description: Joi.string(),
+  startDate: Joi.date().required(),
+  endDate: Joi.date(),
+  location: Joi.string(),
+  maxParticipants: Joi.number().integer().min(1),
+  picture: Joi.string().optional(),
+  isModerate: Joi.boolean().required(),
+  responsableId: Joi.number().integer().required(),
+  typeId: Joi.number().integer().required(),
+});

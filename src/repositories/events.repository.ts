@@ -2,9 +2,7 @@ import { prisma } from "../prismaClient";
 import { Event } from "../entities/events.entity";
 
 export class EventRepository {
-  static async getEvents(
-    filters: any,
-  ): Promise<{
+  static async getEvents(filters: any): Promise<{
     events: Event[];
     total: number;
     page: number;
@@ -78,6 +76,9 @@ export class EventRepository {
       skip: offset,
     });
     const total = await prisma.event.count({ where });
+    if (offset >= total) {
+      throw new Error("Page not found");
+    }
     return {
       events: events.map((event) => Event.fromPrisma(event)),
       total,
