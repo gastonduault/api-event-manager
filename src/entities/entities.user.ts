@@ -42,4 +42,14 @@ export class User {
       prismaUser.isAdmin,
     );
   }
+
+  static paramsFilter(filters: any) {
+    const schema = Joi.object({
+      search: Joi.string().optional(),
+      page: Joi.number().integer().min(1).optional().default(1),
+      pageSize: Joi.number().integer().min(-1).optional().default(10),
+    });
+
+    return schema.validate(filters);
+  }
 }

@@ -35,4 +35,8 @@ export class UsersService {
   static async deleteUser(userId: number) {
     return await UsersRepository.deleteUser(userId);
   }
+
+  static async getUsers(filters: any) {
+    return await UsersRepository.getUsers(filters);
+  }
 }

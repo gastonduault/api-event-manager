@@ -71,4 +71,23 @@ export class UserController {
       next(error);
     }
   };
+
+  static getUsers = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
+    try {
+      const { error, value } = User.paramsFilter(req.query);
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+
+      const usersData = await UsersService.getUsers(value);
+      res.status(200).json(usersData);
+    } catch (error) {
+      next(error);
+    }
+  };
 }

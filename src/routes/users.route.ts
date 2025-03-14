@@ -92,6 +92,41 @@ router.delete("/users/:id", UserController.deleteUser);
 
 /**
  * @swagger
+ * /api/users:
+ *   get:
+ *     tags:
+ *       - Users
+ *     summary: Get a list of users with pagination and search
+ *     parameters:
+ *       - name: search
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Search by email, firstname, or lastname
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: Number of users per page
+ *     responses:
+ *       200:
+ *         description: List of users with pagination
+ *       500:
+ *         description: Internal server error
+ */
+
+router.get("/users", UserController.getUsers);
+
+/**
+ * @swagger
  *  components:
  *   schemas:
  *     User:

@@ -66,4 +66,40 @@ export class UsersRepository {
       throw error;
     }
   }
+
+  static async getUsers(
+    filters: any,
+  ): Promise<{ users: User[]; total: number; page: number; pageSize: number }> {
+    const { search, page = "1", pageSize = "10" } = filters;
+
+    const pageNumber = Math.max(1, parseInt(page));
+    const pageSizeNumber = parseInt(pageSize);
+    const limit =
+      pageSizeNumber === -1 ? undefined : Math.max(1, pageSizeNumber);
+    const offset = limit ? (pageNumber - 1) * limit : 0;
+
+    const where: any = {};
+    if (search) {
+      where.OR = [
+        { email: { contains: search, mode: "insensitive" } },
+        { firstname: { contains: search, mode: "insensitive" } },
+        { lastname: { contains: search, mode: "insensitive" } },
+      ];
+    }
+
+    const users = await prisma.user.findMany({
+      where,
+      take: limit,
+      skip: offset,
+    });
+
+    const total = await prisma.user.count({ where });
+
+    return {
+      users: users.map((user) => User.fromPrisma(user)),
+      total,
+      page: pageNumber,
+      pageSize: pageSizeNumber,
+    };
+  }
 }
