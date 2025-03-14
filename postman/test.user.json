@@ -1,0 +1,1463 @@
+{
+  "info": {
+    "_postman_id": "d58e53cc-0c59-4b29-aa33-6d0226b82e70",
+    "name": "tests.user",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43050180"
+  },
+  "item": [
+    {
+      "name": "create user correct",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users"]
+        }
+      },
+      "response": [
+        {
+          "name": "create user correct",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "105"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"69-9YWpjW9wsc+VqnbAMuCnP8o4Gs8\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:22:47 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 18,\n    \"email\": \"test@example.com\",\n    \"password\": null,\n    \"firstname\": \"test\",\n    \"lastname\": \"test\",\n    \"isAdmin\": false\n}"
+        }
+      ]
+    },
+    {
+      "name": "create user already exists",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users"]
+        }
+      },
+      "response": [
+        {
+          "name": "create user correct already exists",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "32"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20-N0CbDIzmlWyrjCtE3NXOzGCeBnY\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:22:57 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Email already exists\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "create user missing an argument",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users"]
+        }
+      },
+      "response": [
+        {
+          "name": "create user correct missing an argument",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"test\",\r\n  \"lastname\": \"test\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "32"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20-N0CbDIzmlWyrjCtE3NXOzGCeBnY\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:23:01 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Email already exists\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "update user",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"testEdition@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/4",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "4"]
+        }
+      },
+      "response": [
+        {
+          "name": "create user correct missing an argument Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"testEdition@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/4",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "4"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "115"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"73-knl37UMAhmwJQxymDC3PA0gvxYQ\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:25:59 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 4,\n    \"email\": \"testEdition@example.com\",\n    \"password\": null,\n    \"firstname\": \"edited\",\n    \"lastname\": \"edited\",\n    \"isAdmin\": false\n}"
+        }
+      ]
+    },
+    {
+      "name": "update user not found",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"testEdition@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "-1"]
+        }
+      },
+      "response": [
+        {
+          "name": "create user correct missing an argument Copy 2",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"testEdition@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/-1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "-1"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-hq/hT0ORGTkTfyRpVCZ/JB/r8Eg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:27:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"User not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "update user invalide request body",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "-1"]
+        }
+      },
+      "response": [
+        {
+          "name": "update user not found Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/-1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "-1"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "89"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"59-IVVBtcIVQuzwQU4HxkxVwrLQMeg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:30:36 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"\\\"value\\\" must contain at least one of [email, password, firstname, lastname]\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete user",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/18",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "18"]
+        }
+      },
+      "response": [
+        {
+          "name": "update user body empty Copy",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/18",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "18"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-hq/hT0ORGTkTfyRpVCZ/JB/r8Eg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:28:59 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"User not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete user not found",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "-1"]
+        }
+      },
+      "response": [
+        {
+          "name": "delete user Copy",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/-1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "-1"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-hq/hT0ORGTkTfyRpVCZ/JB/r8Eg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:29:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"User not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete user invalide request body",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/bonjour",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "bonjour"]
+        }
+      },
+      "response": [
+        {
+          "name": "delete user not found Copy",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/bonjour",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "bonjour"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "27"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1b-gNNwyKm7kBPDX44b+qBDzdQ4Cjo\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:30:13 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Invalid user ID\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "get users with params",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "search",
+              "value": null,
+              "description": "search by firstname, lastname, email",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": null,
+              "description": "current page",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": null,
+              "description": "number per page",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get users with params",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": null,
+                  "description": "search by firstname, lastname, email",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": null,
+                  "description": "current page",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": null,
+                  "description": "number per page",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1111"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"457-nDAMFyz3+U/xtwX3xN8/rKq1ONI\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:32:49 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"users\": [\n        {\n            \"id\": 4,\n            \"email\": \"testEdition@example.com\",\n            \"password\": null,\n            \"firstname\": \"edited\",\n            \"lastname\": \"edited\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 5,\n            \"email\": \"user2@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 6,\n            \"email\": \"user3@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 7,\n            \"email\": \"user4@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 8,\n            \"email\": \"user5@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 9,\n            \"email\": \"user6@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 10,\n            \"email\": \"user7@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 11,\n            \"email\": \"user8@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 12,\n            \"email\": \"user9@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 13,\n            \"email\": \"user10@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        }\n    ],\n    \"total\": 14,\n    \"page\": 1,\n    \"pageSize\": 10\n}"
+        }
+      ]
+    },
+    {
+      "name": "get users with pagination",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/?page=2&pageSize=2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "search",
+              "value": "",
+              "description": "search by firstname, lastname, email",
+              "disabled": true
+            },
+            {
+              "key": "page",
+              "value": "2",
+              "description": "current page"
+            },
+            {
+              "key": "pageSize",
+              "value": "2",
+              "description": "number per page"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get users with params Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/?page=2&pageSize=2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "",
+                  "description": "search by firstname, lastname, email",
+                  "disabled": true
+                },
+                {
+                  "key": "page",
+                  "value": "2",
+                  "description": "current page"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2",
+                  "description": "number per page"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "254"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"fe-6TmxwsnXMhxsiu0RFQ/fHtesWOo\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:33:30 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"users\": [\n        {\n            \"id\": 6,\n            \"email\": \"user3@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 7,\n            \"email\": \"user4@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        }\n    ],\n    \"total\": 14,\n    \"page\": 2,\n    \"pageSize\": 2\n}"
+        }
+      ]
+    },
+    {
+      "name": "get users with search",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/?search=12",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "page",
+              "value": "2",
+              "description": "current page",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "2",
+              "description": "number per page",
+              "disabled": true
+            },
+            {
+              "key": "search",
+              "value": "12"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get users with pagination Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/?search=12",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2",
+                  "description": "current page",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2",
+                  "description": "number per page",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "12"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "151"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"97-jcXYdFX3Kfsd9vNooIlsXLNh6Sg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:34:34 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"users\": [\n        {\n            \"id\": 15,\n            \"email\": \"user12@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        }\n    ],\n    \"total\": 1,\n    \"page\": 1,\n    \"pageSize\": 10\n}"
+        }
+      ]
+    },
+    {
+      "name": "get users with search unknwon user",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/?search=tititoto",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "page",
+              "value": "2",
+              "description": "current page",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "2",
+              "description": "number per page",
+              "disabled": true
+            },
+            {
+              "key": "search",
+              "value": "tititoto"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get users with search Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/?search=tititoto",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2",
+                  "description": "current page",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "2",
+                  "description": "number per page",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "tititoto"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "45"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2d-ltqdvqUoBzrWkgghdK0ktsl9ijc\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:35:07 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"users\": [],\n    \"total\": 0,\n    \"page\": 1,\n    \"pageSize\": 10\n}"
+        }
+      ]
+    },
+    {
+      "name": "get all users",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/?pageSize=-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "page",
+              "value": "",
+              "description": "current page",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "-1",
+              "description": "number per page"
+            },
+            {
+              "key": "search",
+              "value": "tititoto",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get users with search unknwon user Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/?pageSize=-1",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "",
+                  "description": "current page",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "-1",
+                  "description": "number per page"
+                },
+                {
+                  "key": "search",
+                  "value": "tititoto",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "1539"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"603-mhB16BGKdWIdX7w/4VjGRo6h9kI\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:35:41 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"users\": [\n        {\n            \"id\": 5,\n            \"email\": \"user2@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 6,\n            \"email\": \"user3@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 7,\n            \"email\": \"user4@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 8,\n            \"email\": \"user5@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 9,\n            \"email\": \"user6@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 10,\n            \"email\": \"user7@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 11,\n            \"email\": \"user8@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 12,\n            \"email\": \"user9@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 13,\n            \"email\": \"user10@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 14,\n            \"email\": \"user11@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 15,\n            \"email\": \"user12@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 16,\n            \"email\": \"user13@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 17,\n            \"email\": \"user14@example.com\",\n            \"password\": null,\n            \"firstname\": \"John\",\n            \"lastname\": \"Doe\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": 4,\n            \"email\": \"testEdition@example.com\",\n            \"password\": null,\n            \"firstname\": \"edited\",\n            \"lastname\": \"edited\",\n            \"isAdmin\": false\n        }\n    ],\n    \"total\": 14,\n    \"page\": 1,\n    \"pageSize\": -1\n}"
+        }
+      ]
+    },
+    {
+      "name": "get users invalide request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/?pageSize=-2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", ""],
+          "query": [
+            {
+              "key": "page",
+              "value": "2",
+              "description": "current page",
+              "disabled": true
+            },
+            {
+              "key": "pageSize",
+              "value": "-2",
+              "description": "number per page"
+            },
+            {
+              "key": "search",
+              "value": "tititoto",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "get all users Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/?pageSize=-2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", ""],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2",
+                  "description": "current page",
+                  "disabled": true
+                },
+                {
+                  "key": "pageSize",
+                  "value": "-2",
+                  "description": "number per page"
+                },
+                {
+                  "key": "search",
+                  "value": "tititoto",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "60"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"3c-0xlub3koxSp6bSA1MUHunYKNbBg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 08:36:53 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"\\\"pageSize\\\" must be greater than or equal to -1\"\n}"
+        }
+      ]
+    }
+  ]
+}

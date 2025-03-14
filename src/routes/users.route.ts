@@ -1,5 +1,11 @@
 import { Router, Request, Response } from "express";
 import { prisma } from "../prismaClient";
+import { UserController } from "../controllers/users.controller";
+import {
+  validateCreateUser,
+  validateUpdateUser,
+} from "../middlewares/validateHandler.middlewares";
+
 const router = Router();
 
 /**
@@ -14,50 +20,75 @@ const router = Router();
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             properties:
- *               email:
- *                 type: string
- *                 example: "user@example.com"
- *               password:
- *                 type: string
- *                 example: "securepassword"
- *               firstname:
- *                 type: string
- *                 example: "John"
- *               lastname:
- *                 type: string
- *                 example: "Doe"
- *               isAdmin:
- *                 type: boolean
- *                 example: false
+ *             $ref: '#/components/schemas/User'
  *     responses:
  *       201:
  *         description: User created successfully
  *       400:
  *         description: Missing required fields or email already exists
  */
-router.post("/users", async (req: Request, res: Response) => {
-  try {
-    const { email, password, firstname, lastname, isAdmin } = req.body;
 
-    if (!email || !password) {
-      res.status(400).json({ error: "Email and password are required" });
-      return;
-    }
+router.post("/users", validateCreateUser, UserController.createUser);
 
-    const newUser = await prisma.user.create({
-      data: { email, password, firstname, lastname, isAdmin: isAdmin ?? false },
-    });
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   put:
+ *     tags:
+ *       - Users
+ *     summary: Update an existing user
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the user to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
 
-    res
-      .status(201)
-      .json({ message: "User created successfully", user: newUser });
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ error: "Failed to create user", details: error });
-  }
-});
+router.put("/users/:id", validateUpdateUser, UserController.updateUser);
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     tags:
+ *       - Users
+ *     summary: Delete an existing user
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the user to delete
+ *     responses:
+ *       200:
+ *         description: User deleted successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: User not found
+ *       500:
+ *         description: Internal server error
+ */
+
+router.delete("/users/:id", UserController.deleteUser);
 
 /**
  * @swagger
@@ -65,44 +96,55 @@ router.post("/users", async (req: Request, res: Response) => {
  *   get:
  *     tags:
  *       - Users
- *     summary: Get all users
+ *     summary: Get a list of users with pagination and search
+ *     parameters:
+ *       - name: search
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: string
+ *         description: Search by email, firstname, or lastname
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         schema:
+ *           type: integer
+ *         description: Number of users per page
  *     responses:
  *       200:
- *         description: A list of users
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 users:
- *                   type: array
- *                   items:
- *                     type: object
- *                     properties:
- *                       id:
- *                         type: integer
- *                         example: 1
- *                       email:
- *                         type: string
- *                         example: "user@example.com"
- *                       firstname:
- *                         type: string
- *                         example: "John"
- *                       lastname:
- *                         type: string
- *                         example: "Doe"
+ *         description: List of users with pagination
+ *       500:
+ *         description: Internal server error
  */
-router.get("/users", async (req: Request, res: Response) => {
-  try {
-    const users = await prisma.user.findMany({
-      select: { id: true, email: true, firstname: true, lastname: true },
-    });
 
-    res.status(200).json({ users });
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    res.status(500).json({ error: "Failed to fetch users", details: error });
-  }
-});
+router.get("/users", UserController.getUsers);
+
+/**
+ * @swagger
+ *  components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           example: "user@example.com"
+ *         password:
+ *           type: string
+ *           example: "securepassword"
+ *         firstname:
+ *           type: string
+ *           example: "John"
+ *         lastname:
+ *           type: string
+ *           example: "Doe"
+ *
+ */
 
 export default router;
