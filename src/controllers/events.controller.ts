@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
 import { EventService } from "../services/events.service";
-import { Event } from "../entities/events.entity";
 import { prisma } from "../prismaClient";
-import { eventIdSchema, eventSchema } from "../schemas/events.schema";
+import {
+  eventIdSchema,
+  eventSchema,
+  updateEventSchema,
+} from "../schemas/events.schema";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -100,6 +103,28 @@ export class EventController {
         return;
       }
       res.status(200).json(event);
+    } catch (error) {
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
+  static async updateEvent(req: Request, res: Response) {
+    try {
+      const { error, value } = updateEventSchema.validate(req.params);
+      if (error) {
+        res
+          .status(400)
+          .json({ error: "Validation error", message: error.details });
+        return;
+      }
+      // const eventId = parseInt(req.params.id, 10);
+      //
+      // const event = await EventService.updateEvent(eventId,value);
+      // if (!event) {
+      //   res.status(404).json({ error: "Event not found or access denied" });
+      //   return;
+      // }
+      // res.status(200).json(event);
+      //
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }

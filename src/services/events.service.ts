@@ -1,5 +1,6 @@
 import { EventRepository } from "../repositories/events.repository";
 import { PrismaClient } from "@prisma/client";
+import { updateEventSchema } from "../schemas/events.schema";
 
 const prisma = new PrismaClient();
 export class EventService {
@@ -29,5 +30,19 @@ export class EventService {
     }
 
     return event;
+  }
+
+  static async updateEvent(eventId: number, updatedData: any) {
+    const { error, value } = updateEventSchema.validate(updatedData);
+    if (error) {
+      throw new Error(error.details.map((e) => e.message).join(", "));
+    }
+
+    const existingEvent = await EventRepository.getEventById(eventId);
+    if (!existingEvent) {
+      throw new Error("Event not found");
+    }
+
+    return EventRepository.updateEvent(eventId, value);
   }
 }

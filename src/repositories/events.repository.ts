@@ -43,4 +43,14 @@ export class EventRepository {
     }
     return Event.fromPrisma(prismaEvent);
   }
+
+  static async updateEvent(eventId: number, updatedData: any) {
+    try {
+      const prismaEvent = await prisma.event.update({
+        where: { id: eventId },
+        data: updatedData,
+      });
+      return Event.fromPrisma(prismaEvent);
+    } catch (error) {}
+  }
 }

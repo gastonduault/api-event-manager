@@ -39,3 +39,14 @@ export const eventSchema = Joi.object({
   typeId: Joi.number().integer().required(),
   description: Joi.string().optional(),
 });
+
+export const updateEventSchema = Joi.object({
+  name: Joi.string().optional(),
+  startDate: Joi.date().iso().optional(),
+  endDate: Joi.date().iso().min(Joi.ref("startDate")).optional(),
+  location: Joi.string().optional(),
+  maxParticipants: Joi.number().integer().min(1).optional(),
+  picture: Joi.string().uri().optional(),
+  description: Joi.string().optional(),
+  typeId: Joi.number().integer().optional(),
+}).min(1);

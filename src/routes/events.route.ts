@@ -161,4 +161,36 @@ router.post("/events", EventController.createEvent);
  */
 router.get("/events/:id", EventController.getEventById);
 
+/**
+ * @swagger
+ * /api/events/{id}:
+ *   put:
+ *     tags:
+ *       - Events
+ *     summary: Update an existing event
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the event to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Event'
+ *     responses:
+ *       200:
+ *         description: Event updated successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: Event not found
+ *       500:
+ *         description: Internal server error
+ */
+// router.put("/events/:id", EventController.updateUser);
+
 export default router;
