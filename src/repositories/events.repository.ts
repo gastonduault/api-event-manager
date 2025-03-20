@@ -50,7 +50,9 @@ export class EventRepository {
         where: { id: eventId },
         data: updatedData,
       });
-      return Event.fromPrisma(prismaEvent);
-    } catch (error) {}
+      return prismaEvent;
+    } catch (error) {
+      return null;
+    }
   }
 }

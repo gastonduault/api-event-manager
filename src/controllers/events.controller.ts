@@ -109,22 +109,41 @@ export class EventController {
   }
   static async updateEvent(req: Request, res: Response) {
     try {
-      const { error, value } = updateEventSchema.validate(req.body);
-      if (error) {
-        res
-          .status(400)
-          .json({ error: "Validation error", message: error.details });
+      const { error: paramsError } = eventIdSchema.validate(req.params);
+      if (paramsError) {
+        res.status(400).json({ error: paramsError.details[0].message });
         return;
       }
+
       const eventId = parseInt(req.params.id, 10);
 
-      const event = await EventService.updateEvent(eventId, value);
-      if (!event) {
-        res.status(404).json({ error: "Event not found or access denied" });
+      const existingEvent = await EventService.getEventById(eventId);
+      if (!existingEvent) {
+        res.status(404).json({ error: "Event not found" });
         return;
       }
+
+      const { error: bodyError, value } = eventSchema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (bodyError) {
+        console.error("Validation Error:", bodyError.details);
+
+        res.status(400).json({
+          error: "Validation error",
+          details: bodyError.details.map((err) => err.message),
+        });
+        return;
+      }
+
+      const event = await EventService.updateEvent(eventId, value);
+
       res.status(200).json(event);
     } catch (error) {
+      if (error.message === "Event not found") {
+        res.status(404).send({ error: "Event not found" });
+        return;
+      }
       res.status(500).send({ error: "Internal server error" });
     }
   }
