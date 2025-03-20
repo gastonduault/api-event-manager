@@ -44,6 +44,12 @@ export class TypeController {
         res.status(400).json({ error: error.details[0].message });
         return;
       }
+
+      if (await TypeService.typeExists(name)) {
+        res.status(409).json({ error: "Type already exists" });
+        return;
+      }
+
       const newType = await TypeService.createType(name);
       res.status(201).send(newType);
     } catch (error) {
@@ -67,6 +73,12 @@ export class TypeController {
         res.status(400).json({ error: error.details[0].message });
         return;
       }
+
+      if (await TypeService.typeExists(name)) {
+        res.status(409).json({ error: "Type already exists" });
+        return;
+      }
+
       const updatedType = await TypeService.updateType(id, { name });
       res.status(200).send(updatedType);
     } catch (error) {
@@ -84,6 +96,16 @@ export class TypeController {
         res.status(400).json({ error: error.details[0].message });
         return;
       }
+
+      if (await TypeService.isUsedByEvents(id)) {
+        res
+          .status(409)
+          .json({
+            error: "Cannot delete type because it is used by existing events.",
+          });
+        return;
+      }
+
       await TypeService.deleteType(id);
       res.status(204).send();
     } catch (error) {

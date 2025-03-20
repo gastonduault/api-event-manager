@@ -20,4 +20,12 @@ export class TypeService {
   static async deleteType(id: number) {
     return TypeRepository.deleteType(id);
   }
+
+  static async typeExists(name: string) {
+    return TypeRepository.typeExists(name);
+  }
+
+  static async isUsedByEvents(id: number) {
+    return TypeRepository.isUsedByEvents(id);
+  }
 }

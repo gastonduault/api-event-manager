@@ -48,4 +48,22 @@ export class TypeRepository {
       },
     });
   }
+
+  static async typeExists(name: string) {
+    const type = await prisma.type.findFirst({
+      where: {
+        name,
+      },
+    });
+    return !!type;
+  }
+
+  static async isUsedByEvents(id: number) {
+    const events = await prisma.event.findMany({
+      where: {
+        typeId: id,
+      },
+    });
+    return events.length > 0;
+  }
 }
