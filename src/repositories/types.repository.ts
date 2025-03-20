@@ -1,38 +1,44 @@
 import { Prisma } from "@prisma/client";
 import { prisma } from "../prismaClient";
+import { Type } from "../entities/types.entity";
 
 export class TypeRepository {
   static async getTypes() {
     //order by id
-    return prisma.type.findMany({
+    const types = await prisma.type.findMany({
       orderBy: {
         id: Prisma.SortOrder.asc,
       },
     });
+    return types.map((type) => Type.fromPrisma(type));
   }
+
   static async getTypeById(id: number) {
-    return prisma.type.findUnique({
+    const type = await prisma.type.findUnique({
       where: {
         id,
       },
     });
+    return Type.fromPrisma(type);
   }
 
   static async createType(name: string) {
-    return prisma.type.create({
+    const newType = await prisma.type.create({
       data: {
         name,
       },
     });
+    return Type.fromPrisma(newType);
   }
 
   static async updateType(id: number, data: { name: string }) {
-    return prisma.type.update({
+    const type = await prisma.type.update({
       where: {
         id,
       },
       data,
     });
+    return Type.fromPrisma(type);
   }
 
   static async deleteType(id: number) {
