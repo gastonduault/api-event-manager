@@ -1,6 +1,5 @@
 import { EventRepository } from "../repositories/events.repository";
 import { PrismaClient } from "@prisma/client";
-import { updateEventSchema } from "../schemas/events.schema";
 
 const prisma = new PrismaClient();
 export class EventService {

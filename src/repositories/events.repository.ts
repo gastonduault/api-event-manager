@@ -46,11 +46,10 @@ export class EventRepository {
 
   static async updateEvent(eventId: number, updatedData: any) {
     try {
-      const prismaEvent = await prisma.event.update({
+      return await prisma.event.update({
         where: { id: eventId },
         data: updatedData,
       });
-      return prismaEvent;
     } catch (error) {
       return null;
     }

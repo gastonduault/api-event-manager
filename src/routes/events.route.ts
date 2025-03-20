@@ -205,6 +205,9 @@ router.get("/events/:id", EventController.getEventById);
  *         name:
  *           type: string
  *           example: "Hackathon 2025"
+ *         responsableId:
+ *           type: integer
+ *           example: 1
  *         startDate:
  *           type: string
  *           format: date-time
