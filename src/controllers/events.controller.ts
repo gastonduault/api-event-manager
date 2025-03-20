@@ -109,22 +109,21 @@ export class EventController {
   }
   static async updateEvent(req: Request, res: Response) {
     try {
-      const { error, value } = updateEventSchema.validate(req.params);
+      const { error, value } = updateEventSchema.validate(req.body);
       if (error) {
         res
           .status(400)
           .json({ error: "Validation error", message: error.details });
         return;
       }
-      // const eventId = parseInt(req.params.id, 10);
-      //
-      // const event = await EventService.updateEvent(eventId,value);
-      // if (!event) {
-      //   res.status(404).json({ error: "Event not found or access denied" });
-      //   return;
-      // }
-      // res.status(200).json(event);
-      //
+      const eventId = parseInt(req.params.id, 10);
+
+      const event = await EventService.updateEvent(eventId, value);
+      if (!event) {
+        res.status(404).json({ error: "Event not found or access denied" });
+        return;
+      }
+      res.status(200).json(event);
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }
