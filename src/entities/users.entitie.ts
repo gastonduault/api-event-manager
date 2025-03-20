@@ -32,11 +32,22 @@ export class User {
     return schema.validate(userData);
   }
 
-  static fromPrisma(prismaUser: any): User {
+  static fromPrismaInternal(prismaUser: any): User {
     return new User(
       prismaUser.id,
       prismaUser.email,
-      null,
+      prismaUser.password,
+      prismaUser.firstname,
+      prismaUser.lastname,
+      prismaUser.isAdmin,
+    );
+  }
+
+  static fromPrismaExternal(prismaUser: any): User {
+    return new User(
+      prismaUser.id,
+      prismaUser.email,
+      "",
       prismaUser.firstname,
       prismaUser.lastname,
       prismaUser.isAdmin,
@@ -51,5 +62,9 @@ export class User {
     });
 
     return schema.validate(filters);
+  }
+
+  getPassword(): string | undefined {
+    return this.password;
   }
 }

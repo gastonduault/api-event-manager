@@ -1,5 +1,5 @@
 import express from "express";
-import { errorHandler } from "./middlewares/errorHandler.middlewares";
+import { errorHandler } from "./middlewares/errorHandler.middleware";
 import setupSwagger from "./swaggerConfig";
 import eventRoutes from "./routes/events.route";
 import userRoutes from "./routes/users.route";

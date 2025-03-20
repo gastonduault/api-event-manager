@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { User } from "../entities/entities.user";
+import { User } from "../entities/users.entitie";
 
 export const validateCreateUser = (
   req: Request,
