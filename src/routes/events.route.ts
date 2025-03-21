@@ -177,47 +177,8 @@ router.get("/events/:id", EventController.getEventById);
  *           type: integer
  *           example: 10
  *     responses:
- *       204:
+ *       200:
  *         description: Event deleted successfully
- *       400:
- *         description: Invalid event ID
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *             properties:
- *               error:
- *                 type: string
- *                 example: "Invalid request"
- *               message:
- *                 type: string
- *                 example: "Event ID must be a valid number"
- *       404:
- *         description: Event not found
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *             properties:
- *               error:
- *                 type: string
- *                 example: "Event not found"
- *               message:
- *                 type: string
- *                 example: "No event found with ID 10"
- *       500:
- *         description: Internal server error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *             properties:
- *               error:
- *                 type: string
- *                 example: "Server error"
- *               message:
- *                 type: string
- *                 example: "An unexpected error occurred"
  */
 
 router.delete("/events/:id", EventController.removeEvent);

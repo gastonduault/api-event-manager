@@ -117,13 +117,13 @@ export class EventController {
 
       const event = await EventService.getEventById(eventId);
       if (!event) {
-        res.status(404).json({ error: "Event not found or access denied" });
+        res.status(404).json({ error: "Event not found" });
         return;
       }
 
       await EventService.removeEvent(eventId);
 
-      res.status(204).send({ message: "Event deleted successfully" });
+      res.status(200).json({ message: "Event deleted successfully" });
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }
