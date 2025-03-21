@@ -1,8 +1,8 @@
 import { TypeRepository } from "../repositories/types.repository";
 
 export class TypeService {
-  static async getTypes() {
-    return TypeRepository.getTypes();
+  static async getTypes(filters: any) {
+    return TypeRepository.getTypes(filters);
   }
 
   static async getTypeById(id: number) {

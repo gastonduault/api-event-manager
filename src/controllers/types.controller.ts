@@ -1,11 +1,24 @@
 import { Request, Response } from "express";
 import { TypeService } from "../services/types.service";
-import { typeIdSchema, typeSchema } from "../schemas/types.schema";
+import {
+  paginationSchema,
+  typeIdSchema,
+  typeSchema,
+} from "../schemas/types.schema";
 
 export class TypeController {
   static async getTypes(req: Request, res: Response) {
     try {
-      const types = await TypeService.getTypes();
+      const { error, value } = paginationSchema.validate(req.query);
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+      const filters = {
+        page: value.page || 1,
+        pageSize: value.pageSize || 10,
+      };
+      const types = await TypeService.getTypes(filters);
       res.status(200).send(types);
     } catch (error) {
       res
@@ -98,11 +111,9 @@ export class TypeController {
       }
 
       if (await TypeService.isUsedByEvents(id)) {
-        res
-          .status(409)
-          .json({
-            error: "Cannot delete type because it is used by existing events.",
-          });
+        res.status(409).json({
+          error: "Cannot delete type because it is used by existing events.",
+        });
         return;
       }
 

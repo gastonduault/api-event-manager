@@ -9,6 +9,19 @@ const router = Router();
  *     tags:
  *       - Types
  *     summary: Get a list of all event types
+ *     parameters:
+ *        - in: query
+ *          name: page
+ *          schema:
+ *            type: integer
+ *            default: 1
+ *          description: Page number
+ *        - in: query
+ *          name: pageSize
+ *          schema:
+ *            type: integer
+ *            default: 10
+ *          description: Number of items per page
  *     responses:
  *       200:
  *         description: Successfully retrieved the list of types

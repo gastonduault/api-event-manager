@@ -3,14 +3,27 @@ import { prisma } from "../prismaClient";
 import { Type } from "../entities/types.entity";
 
 export class TypeRepository {
-  static async getTypes() {
-    //order by id
+  static async getTypes(filters: any) {
+    const { page, pageSize } = filters;
+    const pageNumber = Math.max(1, parseInt(page));
+    const pageSizeNumber = Math.max(1, parseInt(pageSize));
+    const limit = pageSizeNumber;
+    const offset = (pageNumber - 1) * pageSizeNumber;
+
     const types = await prisma.type.findMany({
+      take: limit,
+      skip: offset,
       orderBy: {
         id: Prisma.SortOrder.asc,
       },
     });
-    return types.map((type) => Type.fromPrisma(type));
+    const total = await prisma.type.count();
+    return {
+      types: types.map((type) => Type.fromPrisma(type)),
+      total,
+      page: pageNumber,
+      pageSize: pageSizeNumber,
+    };
   }
 
   static async getTypeById(id: number) {
