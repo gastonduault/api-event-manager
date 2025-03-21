@@ -4,6 +4,7 @@ import setupSwagger from "./swaggerConfig";
 import eventRoutes from "./routes/events.route";
 import userRoutes from "./routes/users.route";
 import typeRoutes from "./routes/types.route";
+import participationRoutes from "./routes/participations.route";
 
 const app = express();
 const port = 3000;
@@ -23,6 +24,7 @@ app.post("/", (req, res) => {
 app.use("/api", eventRoutes);
 app.use("/api", userRoutes);
 app.use("/api", typeRoutes);
+app.use("/api", participationRoutes);
 
 // middlewares
 app.use(errorHandler);

@@ -1,6 +1,6 @@
 import { prisma } from "../prismaClient";
 import { User } from "../entities/users.entitie";
-import { PrismaClient, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 export class UsersRepository {
   static async createUser(userData: {
@@ -117,5 +117,14 @@ export class UsersRepository {
     });
 
     return prismaUser ? User.fromPrismaInternal(prismaUser) : null;
+  }
+
+  //getuserbyid
+  static async getUserById(userId: number): Promise<User | null> {
+    const prismaUser = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    return prismaUser ? User.fromPrismaExternal(prismaUser) : null;
   }
 }

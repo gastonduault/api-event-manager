@@ -22,6 +22,10 @@ const swaggerDefinition = {
       name: "Types",
       description: "Types management",
     },
+    {
+      name: "Participations",
+      description: "Participations management",
+    },
   ],
 };
 
