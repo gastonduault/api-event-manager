@@ -1,5 +1,4 @@
-import { Router, Request, Response } from "express";
-import { prisma } from "../prismaClient";
+import { Router } from "express";
 import { EventController } from "../controllers/events.controller";
 
 const router = Router();
@@ -10,12 +9,12 @@ const router = Router();
  *   get:
  *     tags:
  *       - Events
- *     description: Get the list of events
+ *     summary: Get the list of events
  *     parameters:
  *       - name: status
  *         in: query
  *         required: false
- *         description: Filter events by status (moderated)
+ *         description: Filter events by status (moderated/unmoderated)
  *         schema:
  *           type: string
  *       - name: type

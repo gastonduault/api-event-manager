@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 export const eventQuerySchema = Joi.object({
-  status: Joi.string().valid("moderated").optional(),
+  status: Joi.string().valid("moderated", "unmoderated").optional(),
   type: Joi.number().integer().optional(),
   startDate: Joi.date().iso().optional(),
   endDate: Joi.date()

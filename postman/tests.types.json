@@ -1,0 +1,1031 @@
+{
+  "info": {
+    "_postman_id": "00da7379-4041-478a-a18e-d689090b0d8f",
+    "name": "Types",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32481832"
+  },
+  "item": [
+    {
+      "name": "/api/types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/types pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types?page=2&pageSize=5",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types"],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            },
+            {
+              "key": "pageSize",
+              "value": "5"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/types/{id}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/types/{id} error 400",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/id",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "id"]
+        }
+      },
+      "response": [
+        {
+          "name": "localhost:3000/api/types/id",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/id",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "id"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"24-qUtCTx1e8GUFQbEY/VRm0sdr+1g\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 08:57:24 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type ID must be a number\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 404 type not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/5",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "5"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} Copy",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/5",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "5"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-/aoQUvSIFUcQEz43jdp7N5Nklmo\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 08:55:21 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Concert\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types"],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Concert\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types"],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-TQFFVBTGBjnPa68SAaMDMifN4N0\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:15:30 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 17,\n    \"name\": \"Concert\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types error 400",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":2}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types"],
+          "query": [
+            {
+              "key": "",
+              "value": null,
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types error 400",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":2}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types"],
+              "query": [
+                {
+                  "key": "",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "37"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"25-sEENU6PPJDW3x+oGKp75XLdZ2J8\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:37:43 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"\\\"name\\\" must be a string\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types error 409 type already exists",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Concert\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types"]
+        }
+      },
+      "response": [
+        {
+          "name": "error 409",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Concert\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types"]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "31"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1f-5nZF4v4+enqGu1YQrre4lkl9EL4\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:16:22 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type already exists\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id}",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Seminar\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types/2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/types/{id} error 400",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Seminar\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types/id",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "id"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Seminar\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types/id",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "id"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"24-qUtCTx1e8GUFQbEY/VRm0sdr+1g\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:28:56 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type ID must be a number\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 400 name required",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "2"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} error 400 Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "2"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "32"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"20-Gf1XqWtgTj7hWCFJzfQJMKr1rAg\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:29:22 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"\\\"name\\\" is required\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 404 type not existing",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"modified\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types/42",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "42"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} error 404 type not existing Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"modified\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types/42",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "42"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-/aoQUvSIFUcQEz43jdp7N5Nklmo\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:34:15 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 409 type already exists",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"Concert\"}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/types/2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "2"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} error 409 type already exists",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Concert\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/types/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "2"]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "31"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1f-5nZF4v4+enqGu1YQrre4lkl9EL4\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:28:14 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type already exists\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id}",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/15",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "15"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id}",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/15",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "15"]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:35:22 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 400",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/id",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "id"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} error 400",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/id",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "id"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "36"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"24-qUtCTx1e8GUFQbEY/VRm0sdr+1g\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:36:03 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type ID must be a number\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 404 type not existing",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/42",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "42"]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/42",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "42"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "26"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"1a-/aoQUvSIFUcQEz43jdp7N5Nklmo\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:33:26 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Type not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/types/{id} error 409 used by events",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/types/2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "types", "2"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/types/{id} error 409 used by events",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/types/2",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "types", "2"]
+            }
+          },
+          "status": "Conflict",
+          "code": 409,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "69"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"45-8zKD4w+DOOk6bfAXCHxC1/TgHpY\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 09:36:43 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Cannot delete type because it is used by existing events.\"\n}"
+        }
+      ]
+    }
+  ]
+}
