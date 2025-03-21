@@ -120,7 +120,6 @@ export class EventRepository {
     }
     return Event.fromPrisma(prismaEvent);
   }
-
   static async updateEvent(eventId: number, updatedData: any) {
     try {
       return await prisma.event.update({
@@ -129,6 +128,16 @@ export class EventRepository {
       });
     } catch (error) {
       return null;
+    }
+  }
+  static async removeEvent(eventId: number) {
+    try {
+      await prisma.event.delete({
+        where: { id: eventId },
+      });
+    } catch (error) {
+      console.error("Prisma Error:", error);
+      throw error;
     }
   }
 }

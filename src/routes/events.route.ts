@@ -218,6 +218,31 @@ router.get("/events/:id", EventController.getEventById);
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     updateEventSchema:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "Hackathon 2025"
+ *         responsableId:
+ *           type: integer
+ *           example: 1
+ *         startDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-01T09:00:00.000Z"
+ *         maxParticipants:
+ *           type: integer
+ *           example: 100
+ *         typeId:
+ *           type: integer
+ *           example: 2
+ */
+
+/**
+ * @swagger
  * /api/events/{id}:
  *   put:
  *     tags:
@@ -247,5 +272,24 @@ router.get("/events/:id", EventController.getEventById);
  *         description: Internal server error
  */
 router.put("/events/:id", EventController.updateEvent);
+
+/**
+ * @swagger
+ * /api/events/{id}:
+ *   delete:
+ *     tags:
+ *       - Events
+ *     description: Remove event by ID
+  *         description: ID of the event to retrieve
+ *         schema:
+ *           type: integer
+ *           example: 10
+ *     responses:
+ *       200:
+ *         description: Event deleted successfully
+ */
+
+router.delete("/events/:id", EventController.removeEvent);
+
 
 export default router;
