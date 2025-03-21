@@ -104,4 +104,28 @@ export class EventController {
       res.status(500).send({ error: "Internal server error" });
     }
   }
+
+  static async removeEvent(req: Request, res: Response) {
+    try {
+      const { error } = eventIdSchema.validate(req.params);
+
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+      const eventId = parseInt(req.params.id, 10);
+
+      const event = await EventService.getEventById(eventId);
+      if (!event) {
+        res.status(404).json({ error: "Event not found or access denied" });
+        return;
+      }
+
+      await EventService.removeEvent(eventId);
+
+      res.status(204).send({ message: "Event deleted successfully" });
+    } catch (error) {
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
 }

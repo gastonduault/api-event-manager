@@ -30,4 +30,8 @@ export class EventService {
 
     return event;
   }
+
+  static async removeEvent(eventId: number) {
+    return await EventRepository.removeEvent(eventId);
+  }
 }

@@ -43,4 +43,14 @@ export class EventRepository {
     }
     return Event.fromPrisma(prismaEvent);
   }
+  static async removeEvent(eventId: number) {
+    try {
+      await prisma.event.delete({
+        where: { id: eventId },
+      });
+    } catch (error) {
+      console.error("Prisma Error:", error);
+      throw error;
+    }
+  }
 }
