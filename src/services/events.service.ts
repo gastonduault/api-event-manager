@@ -30,4 +30,13 @@ export class EventService {
 
     return event;
   }
+
+  static async updateEvent(eventId: number, updatedData: any) {
+    const existingEvent = await EventRepository.getEventById(eventId);
+    if (!existingEvent) {
+      throw new Error("Event not found");
+    }
+
+    return EventRepository.updateEvent(eventId, updatedData);
+  }
 }

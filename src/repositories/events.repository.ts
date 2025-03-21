@@ -120,6 +120,17 @@ export class EventRepository {
     }
     return Event.fromPrisma(prismaEvent);
   }
+
+  static async updateEvent(eventId: number, updatedData: any) {
+    try {
+      return await prisma.event.update({
+        where: { id: eventId },
+        data: updatedData,
+      });
+    } catch (error) {
+      return null;
+    }
+  }
 }
 
 function formatDates(startDate: string, endDate: string) {

@@ -85,6 +85,41 @@ const router = Router();
  */
 
 router.get("/events", EventController.getEvents);
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     updateEventSchema:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "Hackathon 2025"
+ *         startDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-01T09:00:00.000Z"
+ *         endDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-02T18:00:00.000Z"
+ *         location:
+ *           type: string
+ *           example: "Paris"
+ *         maxParticipants:
+ *           type: integer
+ *           example: 100
+ *         picture:
+ *           type: string
+ *           format: uri
+ *           example: "https://example.com/event.jpg"
+ *         description:
+ *           type: string
+ *           example: "A great tech event"
+ *         typeId:
+ *           type: integer
+ *           example: 2
+ */
 
 /**
  * @swagger
@@ -142,7 +177,6 @@ router.post("/events", EventController.createEvent);
  *         description: ID of the event to retrieve
  *         schema:
  *           type: integer
- *           example: 10
  *     responses:
  *       200:
  *         description: Event details retrieved successfully
@@ -217,5 +251,76 @@ router.post("/events", EventController.createEvent);
  *                   example: "An unexpected error occurred"
  */
 router.get("/events/:id", EventController.getEventById);
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     updateEventSchema:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "Hackathon 2025"
+ *         responsableId:
+ *           type: integer
+ *           example: 1
+ *         startDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-01T09:00:00.000Z"
+ *         endDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-02T18:00:00.000Z"
+ *         location:
+ *           type: string
+ *           example: "Paris"
+ *         maxParticipants:
+ *           type: integer
+ *           example: 100
+ *         picture:
+ *           type: string
+ *           format: uri
+ *           example: "https://example.com/event.jpg"
+ *         description:
+ *           type: string
+ *           example: "A great tech event"
+ *         typeId:
+ *           type: integer
+ *           example: 2
+ */
+
+/**
+ * @swagger
+ * /api/events/{id}:
+ *   put:
+ *     tags:
+ *       - Events
+ *     summary: Update an existing event
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the event to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/updateEventSchema'
+ *     responses:
+ *       200:
+ *         description: Event updated successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: Event not found
+ *       500:
+ *         description: Internal server error
+ */
+router.put("/events/:id", EventController.updateEvent);
 
 export default router;
