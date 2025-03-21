@@ -19,6 +19,13 @@ export class ParticipationService {
         message: `Participation denied: Event ${eventId} is not moderated.`,
       };
     }
+    const currentDate = new Date();
+    if (event.startDate < currentDate) {
+      throw {
+        status: 400,
+        message: `Participation denied: Event ${eventId} has already started.`,
+      };
+    }
 
     const currentParticipants =
       await ParticipationRepository.countParticipants(eventId);
