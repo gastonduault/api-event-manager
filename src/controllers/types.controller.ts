@@ -87,6 +87,12 @@ export class TypeController {
         return;
       }
 
+      const type = await TypeService.getTypeById(id);
+      if (!type) {
+        res.status(404).json({ error: "Type not found" });
+        return;
+      }
+
       if (await TypeService.typeExists(name)) {
         res.status(409).json({ error: "Type already exists" });
         return;
@@ -107,6 +113,12 @@ export class TypeController {
       const { error } = typeIdSchema.validate({ id });
       if (error) {
         res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+
+      const type = await TypeService.getTypeById(id);
+      if (!type) {
+        res.status(404).json({ error: "Type not found" });
         return;
       }
 

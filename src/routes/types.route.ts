@@ -98,6 +98,8 @@ router.get("/types/:id", TypeController.getTypeById);
  *         description: Type created successfully
  *       400:
  *         description: Missing required field
+ *       409:
+ *         description: Type already exists
  */
 router.post("/types", TypeController.createType);
 
@@ -132,6 +134,8 @@ router.post("/types", TypeController.createType);
  *         description: Invalid ID or missing required field
  *       404:
  *         description: Type not found
+ *       409:
+ *         description: Type already exists
  */
 router.put("/types/:id", TypeController.updateType);
 
@@ -156,6 +160,8 @@ router.put("/types/:id", TypeController.updateType);
  *         description: Invalid ID format
  *       404:
  *         description: Type not found
+ *       409:
+ *         description: Type already exists
  */
 router.delete("/types/:id", TypeController.deleteType);
 

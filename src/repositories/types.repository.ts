@@ -32,6 +32,9 @@ export class TypeRepository {
         id,
       },
     });
+    if (!type) {
+      return null;
+    }
     return Type.fromPrisma(type);
   }
 
