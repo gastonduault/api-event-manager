@@ -91,7 +91,7 @@ router.get("/events", EventController.getEvents);
  *   post:
  *     tags:
  *       - Events
- *     description: Create a new event
+ *     summary: Create a new event
  *     requestBody:
  *       required: true
  *       content:
@@ -133,7 +133,7 @@ router.post("/events", EventController.createEvent);
  *   get:
  *     tags:
  *       - Events
- *     description: Get event details by ID
+ *     summary: Retrieve event details by ID
  *     parameters:
  *       - name: id
  *         in: path
@@ -279,17 +279,19 @@ router.put("/events/:id", EventController.updateEvent);
  *   delete:
  *     tags:
  *       - Events
- *     description: Remove event by ID
-  *         description: ID of the event to retrieve
+ *     summary: Remove event by ID
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
  *         schema:
  *           type: integer
- *           example: 10
+ *         description: ID of the event to delete
  *     responses:
- *       200:
+ *       204:
  *         description: Event deleted successfully
  */
 
 router.delete("/events/:id", EventController.removeEvent);
-
 
 export default router;
