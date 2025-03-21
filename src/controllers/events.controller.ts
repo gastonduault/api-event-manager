@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 import { EventService } from "../services/events.service";
-import { eventQuerySchema, eventIdSchema, eventSchema } from "../schemas/events.schema";
+import {
+  eventQuerySchema,
+  eventIdSchema,
+  eventSchema,
+} from "../schemas/events.schema";
 import { prisma } from "../prismaClient";
+import { TypeService } from "../services/types.service";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -59,13 +64,11 @@ export class EventController {
       //   });
       // }
       //
-      // const eventType = await EventTypeService.findById(typeId);
-      // if (!eventType) {
-      //   return res.status(400).json({
-      //     error: "Invalid typeId",
-      //     message: `No event type found with ID ${typeId}`,
-      //   });
-      // }
+      const eventType = await TypeService.getTypeById(typeId);
+      if (!eventType) {
+        res.status(404).json({ error: "Type not found" });
+        return;
+      }
       const responsable = await prisma.user.findUnique({
         where: { id: responsableId },
       });
@@ -74,18 +77,6 @@ export class EventController {
         res.status(400).json({
           error: "Invalid responsableId",
           message: `No user found with ID ${responsableId}`,
-        });
-        return;
-      }
-
-      const eventType = await prisma.type.findUnique({
-        where: { id: typeId },
-      });
-
-      if (!eventType) {
-        res.status(400).json({
-          error: "Invalid typeId",
-          message: `No event type found with ID ${typeId}`,
         });
         return;
       }
@@ -159,14 +150,12 @@ export class EventController {
       //     message: `No responsable found with ID ${responsableId}`,
       //   });
       // }
-      //
-      // const eventType = await EventTypeService.findById(typeId);
-      // if (!eventType) {
-      //   return res.status(400).json({
-      //     error: "Invalid typeId",
-      //     message: `No event type found with ID ${typeId}`,
-      //   });
-      // }
+      const eventType = await TypeService.getTypeById(typeId);
+      if (!eventType) {
+        res.status(404).json({ error: "Type not found" });
+        return;
+      }
+
       const responsable = await prisma.user.findUnique({
         where: { id: responsableId },
       });
@@ -179,17 +168,6 @@ export class EventController {
         return;
       }
 
-      const eventType = await prisma.type.findUnique({
-        where: { id: typeId },
-      });
-
-      if (!eventType) {
-        res.status(400).json({
-          error: "Invalid typeId",
-          message: `No event type found with ID ${typeId}`,
-        });
-        return;
-      }
       const event = await EventService.updateEvent(eventId, value);
 
       res.status(200).json(event);
@@ -201,7 +179,7 @@ export class EventController {
       res.status(500).send({ error: "Internal server error" });
     }
   }
-   static async removeEvent(req: Request, res: Response) {
+  static async removeEvent(req: Request, res: Response) {
     try {
       const { error } = eventIdSchema.validate(req.params);
 
