@@ -2,7 +2,7 @@
 
 ## 📌 Project Description
 
-Event Manager API is a backend application built with **Node.js**, **Express**, and **TypeScript**. The API allows users to manage events, such as role-playing game competitions, by providing functionalities for creating, updating, deleting, and retrieving events and participants.
+Event Manager API is a backend application built with Node.js, Express, and TypeScript. The API allows users to manage events, such as role-playing game competitions, by providing functionalities for creating, updating, deleting, and retrieving events and participants.
 
 ## 🚀 Technologies Used
 
@@ -16,22 +16,35 @@ Event Manager API is a backend application built with **Node.js**, **Express**, 
 
 ```
 📦 api-event-manager
-├── 📁 src
-│   ├── 📄 app.ts         # Express app initialization
-│   ├── 📄 routes.ts      # API routes
-│   ├── 📄 controllers    # Business logic
-│   ├── 📄 models         # Data structures
-│   ├── 📄 middlewares    # Express middlewares
-│   ├── 📄 config.ts      # Configuration settings
-│   └── 📄 utils          # Utility functions
-├── 📄 package.json       # Project dependencies
-├── 📄 tsconfig.json      # TypeScript configuration
-├── 📄 .eslintrc.json     # ESLint configuration
-├── 📄 .prettierrc        # Prettier configuration
-└── 📄 README.md          # Project documentation
+├── 📁 postman           # Postman test files
+│   ├── 📄 tests.events.json
+│   ├── 📄 tests.users.json
+├── 📁 prisma            # Prisma ORM configuration
+│   ├── 📁 migrations    # Database migrations folder
+│   ├── 📄 schema.prisma # Prisma schema definition
+├── 📁 src               # Main source code
+│   ├── 📁 controllers   # Business logic for endpoints
+│   ├── 📁 entities      # Entity/model definitions
+│   ├── 📁 middlewares   # Express middleware
+│   ├── 📁 repositories  # Database access management
+│   ├── 📁 routes        # API route definitions
+│   ├── 📁 schemas       # Data validation
+│   ├── 📁 services      # Business services
+│   ├── 📄 app.ts        # Express application initialization
+│   ├── 📄 prismaClient.ts # Prisma client for DB connection
+│   ├── 📄 swaggerConfig.ts # Swagger configuration for API documentation
+├── 📄 .env-example      # Example environment file
+├── 📄 package.json      # Project dependencies
+└── 📄 tsconfig.json     # TypeScript configuration
 ```
 
 ## 🛠 Installation
+
+In first, environments variables
+
+```sh
+cp .env-example .env
+```
 
 ### With NPM and Docker
 

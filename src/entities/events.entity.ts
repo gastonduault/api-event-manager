@@ -5,13 +5,13 @@ export class Event {
     public id: number,
     public name: string,
     public startDate: Date,
-    public typeId: number,
-    public responsableId: number,
     public endDate: Date,
     public location: string,
     public maxParticipants: number,
     public picture: string,
     public isModerate: boolean,
+    public responsableId: number,
+    public typeId: number,
     public description: string,
   ) {}
 
@@ -20,13 +20,13 @@ export class Event {
       prismaEvent.id,
       prismaEvent.name,
       prismaEvent.startDate,
-      prismaEvent.typeId,
-      prismaEvent.responsableId,
       prismaEvent.endDate,
       prismaEvent.location,
       prismaEvent.maxParticipants,
       prismaEvent.picture,
       prismaEvent.isModerate,
+      prismaEvent.responsableId,
+      prismaEvent.typeId,
       prismaEvent.description,
     );
   }

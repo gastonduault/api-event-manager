@@ -1,5 +1,5 @@
 import { prisma } from "../prismaClient";
-import { User } from "../entities/entities.user";
+import { User } from "../entities/users.entitie";
 import { PrismaClient, Prisma } from "@prisma/client";
 
 export class UsersRepository {
@@ -20,7 +20,7 @@ export class UsersRepository {
         },
       });
 
-      return User.fromPrisma(prismaUser);
+      return User.fromPrismaExternal(prismaUser);
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
@@ -40,7 +40,7 @@ export class UsersRepository {
         data: updatedData,
       });
 
-      return User.fromPrisma(prismaUSer);
+      return User.fromPrismaExternal(prismaUSer);
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
@@ -96,10 +96,26 @@ export class UsersRepository {
     const total = await prisma.user.count({ where });
 
     return {
-      users: users.map((user) => User.fromPrisma(user)),
+      users: users.map((user) => User.fromPrismaExternal(user)),
       total,
       page: pageNumber,
       pageSize: pageSizeNumber,
     };
+  }
+
+  static async getUserByEmail(email: string): Promise<User | null> {
+    const prismaUser = await prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        firstname: true,
+        lastname: true,
+        isAdmin: true,
+      },
+    });
+
+    return prismaUser ? User.fromPrismaInternal(prismaUser) : null;
   }
 }

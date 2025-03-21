@@ -3,8 +3,8 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 export class EventService {
-  static async getEvents() {
-    return await EventRepository.getEvents();
+  static async getEvents(filters: any) {
+    return await EventRepository.getEvents(filters);
   }
 
   static async createEvent(eventData: {
@@ -31,6 +31,14 @@ export class EventService {
     return event;
   }
 
+  static async updateEvent(eventId: number, updatedData: any) {
+    const existingEvent = await EventRepository.getEventById(eventId);
+    if (!existingEvent) {
+      throw new Error("Event not found");
+    }
+
+    return EventRepository.updateEvent(eventId, updatedData);
+  }
   static async removeEvent(eventId: number) {
     return await EventRepository.removeEvent(eventId);
   }

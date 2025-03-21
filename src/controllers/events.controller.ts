@@ -1,16 +1,32 @@
 import { Request, Response } from "express";
 import { EventService } from "../services/events.service";
-import { Event } from "../entities/events.entity";
+import { eventQuerySchema, eventIdSchema, eventSchema } from "../schemas/events.schema";
 import { prisma } from "../prismaClient";
-import { eventIdSchema, eventSchema } from "../schemas/events.schema";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
     try {
-      const events = await EventService.getEvents();
+      const { error, value } = eventQuerySchema.validate(req.query);
+      if (error) {
+        res.status(400).send({ error: error.details[0].message });
+        return;
+      }
+      const filters = {
+        status: value.status,
+        type: value.type,
+        startDate: value.startDate,
+        endDate: value.endDate,
+        date: value.date,
+        location: value.location,
+        page: value.page || 1,
+        pageSize: value.pageSize || 10,
+      };
+      const events = await EventService.getEvents(filters);
       res.status(200).send(events);
     } catch (error) {
-      res.status(500).send({ error: "Internal server error" });
+      res
+        .status(500)
+        .send({ error: "Internal server error", message: error.message });
     }
   }
 
@@ -104,8 +120,88 @@ export class EventController {
       res.status(500).send({ error: "Internal server error" });
     }
   }
+  static async updateEvent(req: Request, res: Response) {
+    try {
+      const { error: paramsError } = eventIdSchema.validate(req.params);
+      if (paramsError) {
+        res.status(400).json({ error: paramsError.details[0].message });
+        return;
+      }
 
-  static async removeEvent(req: Request, res: Response) {
+      const eventId = parseInt(req.params.id, 10);
+
+      const existingEvent = await EventService.getEventById(eventId);
+      if (!existingEvent) {
+        res.status(404).json({ error: "Event not found" });
+        return;
+      }
+      const { error: bodyError, value } = eventSchema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (bodyError) {
+        res.status(400).json({
+          error: "Validation error",
+          details: bodyError.details.map((err) => err.message),
+        });
+        return;
+      }
+
+      const { responsableId, typeId } = req.body;
+
+      //TODO : modify if responsableId or typeId are invalid with the service
+
+      // const { responsableId, typeId } = value;
+      //
+      // const responsable = await ResponsableService.findById(responsableId);
+      // if (!responsable) {
+      //   return res.status(400).json({
+      //     error: "Invalid responsibleId",
+      //     message: `No responsable found with ID ${responsableId}`,
+      //   });
+      // }
+      //
+      // const eventType = await EventTypeService.findById(typeId);
+      // if (!eventType) {
+      //   return res.status(400).json({
+      //     error: "Invalid typeId",
+      //     message: `No event type found with ID ${typeId}`,
+      //   });
+      // }
+      const responsable = await prisma.user.findUnique({
+        where: { id: responsableId },
+      });
+
+      if (!responsable) {
+        res.status(400).json({
+          error: "Invalid responsableId",
+          message: `No user found with ID ${responsableId}`,
+        });
+        return;
+      }
+
+      const eventType = await prisma.type.findUnique({
+        where: { id: typeId },
+      });
+
+      if (!eventType) {
+        res.status(400).json({
+          error: "Invalid typeId",
+          message: `No event type found with ID ${typeId}`,
+        });
+        return;
+      }
+      const event = await EventService.updateEvent(eventId, value);
+
+      res.status(200).json(event);
+    } catch (error) {
+      if (error.message === "Event not found") {
+        res.status(404).send({ error: "Event not found" });
+        return;
+      }
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
+   static async removeEvent(req: Request, res: Response) {
     try {
       const { error } = eventIdSchema.validate(req.params);
 
@@ -120,7 +216,6 @@ export class EventController {
         res.status(404).json({ error: "Event not found" });
         return;
       }
-
       await EventService.removeEvent(eventId);
 
       res.status(200).json({ message: "Event deleted successfully" });

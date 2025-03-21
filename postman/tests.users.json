@@ -49,8 +49,8 @@
               "path": ["api", "users"]
             }
           },
-          "status": "Created",
-          "code": 201,
+          "status": "OK",
+          "code": 200,
           "_postman_previewlanguage": "json",
           "header": [
             {
@@ -63,15 +63,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "105"
+              "value": "303"
             },
             {
               "key": "ETag",
-              "value": "W/\"69-9YWpjW9wsc+VqnbAMuCnP8o4Gs8\""
+              "value": "W/\"12f-mdTeWHIovnCHMfvh5jOvAoRH+zE\""
             },
             {
               "key": "Date",
-              "value": "Fri, 14 Mar 2025 08:22:47 GMT"
+              "value": "Fri, 14 Mar 2025 16:08:01 GMT"
             },
             {
               "key": "Connection",
@@ -83,7 +83,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"id\": 18,\n    \"email\": \"test@example.com\",\n    \"password\": null,\n    \"firstname\": \"test\",\n    \"lastname\": \"test\",\n    \"isAdmin\": false\n}"
+          "body": "{\n    \"user\": {\n        \"id\": 24,\n        \"email\": \"test@example.com\",\n        \"password\": \"\",\n        \"firstname\": \"test\",\n        \"lastname\": \"test\",\n        \"isAdmin\": false\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0LCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDE5Njg0ODEsImV4cCI6MTc0MjA1NDg4MX0.7xEwunQxezUkgl7eYYWwa-o7WtUQGYMFUnFJLxwpPtQ\"\n}"
         }
       ]
     },
@@ -110,7 +110,7 @@
       },
       "response": [
         {
-          "name": "create user correct already exists",
+          "name": "create user already exists",
           "originalRequest": {
             "method": "POST",
             "header": [],
@@ -191,7 +191,7 @@
       },
       "response": [
         {
-          "name": "create user correct missing an argument",
+          "name": "create user missing an argument",
           "originalRequest": {
             "method": "POST",
             "header": [],
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "name": "update user",
+      "name": "update user  unauthaurize",
       "request": {
         "method": "PUT",
         "header": [],
@@ -272,7 +272,7 @@
       },
       "response": [
         {
-          "name": "create user correct missing an argument Copy",
+          "name": "update user",
           "originalRequest": {
             "method": "PUT",
             "header": [],
@@ -292,6 +292,97 @@
               "path": ["api", "users", "4"]
             }
           },
+          "status": "Unauthorized",
+          "code": 401,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "43"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2b-+PJFamVaI+WDwlnKnGxHMqggpSw\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 16:09:10 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": \"Unauthorized: No token provided\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "update user Copy",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI0LCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDE5Njg0ODEsImV4cCI6MTc0MjA1NDg4MX0.7xEwunQxezUkgl7eYYWwa-o7WtUQGYMFUnFJLxwpPtQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"testtest@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/24",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "24"]
+        }
+      },
+      "response": [
+        {
+          "name": "update user Copy",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"testtest@example.com\",\r\n  \"password\": \"securepassword\",\r\n  \"firstname\": \"edited\",\r\n  \"lastname\": \"edited\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/24",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "24"]
+            }
+          },
           "status": "OK",
           "code": 200,
           "_postman_previewlanguage": "json",
@@ -306,15 +397,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "115"
+              "value": "111"
             },
             {
               "key": "ETag",
-              "value": "W/\"73-knl37UMAhmwJQxymDC3PA0gvxYQ\""
+              "value": "W/\"6f-M4TGL0v8I+7YeCB8+EqActZLnYg\""
             },
             {
               "key": "Date",
-              "value": "Fri, 14 Mar 2025 08:25:59 GMT"
+              "value": "Fri, 14 Mar 2025 16:11:28 GMT"
             },
             {
               "key": "Connection",
@@ -326,7 +417,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"id\": 4,\n    \"email\": \"testEdition@example.com\",\n    \"password\": null,\n    \"firstname\": \"edited\",\n    \"lastname\": \"edited\",\n    \"isAdmin\": false\n}"
+          "body": "{\n    \"id\": 24,\n    \"email\": \"testtest@example.com\",\n    \"password\": \"\",\n    \"firstname\": \"edited\",\n    \"lastname\": \"edited\",\n    \"isAdmin\": false\n}"
         }
       ]
     },
@@ -353,7 +444,7 @@
       },
       "response": [
         {
-          "name": "create user correct missing an argument Copy 2",
+          "name": "update user not found",
           "originalRequest": {
             "method": "PUT",
             "header": [],
@@ -493,8 +584,18 @@
       ]
     },
     {
-      "name": "delete user",
+      "name": "delete user unauthorize",
       "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDE5NjgxNjYsImV4cCI6MTc0MjA1NDU2Nn0.qvNqk--xcEs1Nkvvxf4GqWXJUHGp68JvJcJR_Cpf0xI",
+              "type": "string"
+            }
+          ]
+        },
         "method": "DELETE",
         "header": [],
         "body": {
@@ -515,7 +616,7 @@
       },
       "response": [
         {
-          "name": "update user body empty Copy",
+          "name": "delete user unauthorize",
           "originalRequest": {
             "method": "DELETE",
             "header": [],
@@ -535,8 +636,8 @@
               "path": ["api", "users", "18"]
             }
           },
-          "status": "Not Found",
-          "code": 404,
+          "status": "Forbidden",
+          "code": 403,
           "_postman_previewlanguage": "json",
           "header": [
             {
@@ -549,15 +650,15 @@
             },
             {
               "key": "Content-Length",
-              "value": "26"
+              "value": "62"
             },
             {
               "key": "ETag",
-              "value": "W/\"1a-hq/hT0ORGTkTfyRpVCZ/JB/r8Eg\""
+              "value": "W/\"3e-mETjFQphhWXDXDTjpJ4yueb8Zxo\""
             },
             {
               "key": "Date",
-              "value": "Fri, 14 Mar 2025 08:28:59 GMT"
+              "value": "Fri, 14 Mar 2025 16:06:20 GMT"
             },
             {
               "key": "Connection",
@@ -569,7 +670,98 @@
             }
           ],
           "cookie": [],
-          "body": "{\n    \"error\": \"User not found\"\n}"
+          "body": "{\n    \"error\": \"Forbidden: You are not allowed to modify this user\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete user",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIxLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJpYXQiOjE3NDE5NjgxNjYsImV4cCI6MTc0MjA1NDU2Nn0.qvNqk--xcEs1Nkvvxf4GqWXJUHGp68JvJcJR_Cpf0xI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/users/18",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "users", "18"]
+        }
+      },
+      "response": [
+        {
+          "name": "delete user Copy",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/api/users/24",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "users", "24"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "39"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"27-27o4zzUjhHNmthTJyia4gBCjpos\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 14 Mar 2025 16:13:04 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"message\": \"User deleted successfully\"\n}"
         }
       ]
     },

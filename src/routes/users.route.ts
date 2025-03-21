@@ -1,12 +1,27 @@
-import { Router, Request, Response } from "express";
-import { prisma } from "../prismaClient";
+import { Router } from "express";
 import { UserController } from "../controllers/users.controller";
 import {
   validateCreateUser,
   validateUpdateUser,
-} from "../middlewares/validateHandler.middlewares";
+} from "../middlewares/validateHandler.middleware";
+import {
+  authenticateUser,
+  authorizeUser,
+} from "../middlewares/authentication.middleware";
 
 const router = Router();
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ * security:
+ *   - BearerAuth: []
+ */
 
 /**
  * @swagger
@@ -14,7 +29,7 @@ const router = Router();
  *   post:
  *     tags:
  *       - Users
- *     summary: Create a new user
+ *     summary: Create or authenticate a user
  *     requestBody:
  *       required: true
  *       content:
@@ -22,12 +37,11 @@ const router = Router();
  *           schema:
  *             $ref: '#/components/schemas/User'
  *     responses:
- *       201:
- *         description: User created successfully
+ *       200:
+ *         description: User authenticated or created successfully
  *       400:
- *         description: Missing required fields or email already exists
+ *         description: Invalid input data
  */
-
 router.post("/users", validateCreateUser, UserController.createUser);
 
 /**
@@ -37,6 +51,8 @@ router.post("/users", validateCreateUser, UserController.createUser);
  *     tags:
  *       - Users
  *     summary: Update an existing user
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -55,13 +71,20 @@ router.post("/users", validateCreateUser, UserController.createUser);
  *         description: User updated successfully
  *       400:
  *         description: Invalid request body
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
  *       404:
  *         description: User not found
- *       500:
- *         description: Internal server error
  */
-
-router.put("/users/:id", validateUpdateUser, UserController.updateUser);
+router.put(
+  "/users/:id",
+  authenticateUser,
+  authorizeUser,
+  validateUpdateUser,
+  UserController.updateUser,
+);
 
 /**
  * @swagger
@@ -70,6 +93,8 @@ router.put("/users/:id", validateUpdateUser, UserController.updateUser);
  *     tags:
  *       - Users
  *     summary: Delete an existing user
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -80,15 +105,19 @@ router.put("/users/:id", validateUpdateUser, UserController.updateUser);
  *     responses:
  *       200:
  *         description: User deleted successfully
- *       400:
- *         description: Invalid request body
+ *       401:
+ *         description: Unauthorized
+ *       403:
+ *         description: Forbidden
  *       404:
  *         description: User not found
- *       500:
- *         description: Internal server error
  */
-
-router.delete("/users/:id", UserController.deleteUser);
+router.delete(
+  "/users/:id",
+  authenticateUser,
+  authorizeUser,
+  UserController.deleteUser,
+);
 
 /**
  * @swagger
@@ -97,6 +126,8 @@ router.delete("/users/:id", UserController.deleteUser);
  *     tags:
  *       - Users
  *     summary: Get a list of users with pagination and search
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: search
  *         in: query
@@ -119,15 +150,16 @@ router.delete("/users/:id", UserController.deleteUser);
  *     responses:
  *       200:
  *         description: List of users with pagination
+ *       401:
+ *         description: Unauthorized
  *       500:
  *         description: Internal server error
  */
-
-router.get("/users", UserController.getUsers);
+router.get("/users", authenticateUser, UserController.getUsers);
 
 /**
  * @swagger
- *  components:
+ * components:
  *   schemas:
  *     User:
  *       type: object
@@ -144,7 +176,5 @@ router.get("/users", UserController.getUsers);
  *         lastname:
  *           type: string
  *           example: "Doe"
- *
  */
-
 export default router;

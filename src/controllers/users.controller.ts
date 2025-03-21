@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { User } from "../entities/users.entitie";
 import { UsersService } from "../services/users.service";
-import { User } from "../entities/entities.user";
+import { Request, Response, NextFunction } from "express";
 
 export class UserController {
   static createUser = async (
@@ -9,13 +9,9 @@ export class UserController {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const user = await UsersService.createUser(req.body);
-      res.status(201).json(user);
+      const { user, token } = await UsersService.createUser(req.body);
+      res.status(200).json({ user, token });
     } catch (error) {
-      if (error.message === "Email already exists") {
-        res.status(400).json({ error: error.message });
-        return;
-      }
       next(error);
     }
   };

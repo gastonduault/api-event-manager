@@ -1,5 +1,4 @@
-import { Router, Request, Response } from "express";
-import { prisma } from "../prismaClient";
+import { Router } from "express";
 import { EventController } from "../controllers/events.controller";
 
 const router = Router();
@@ -10,7 +9,64 @@ const router = Router();
  *   get:
  *     tags:
  *       - Events
- *     description: Get the list of events
+ *     summary: Get the list of events
+ *     parameters:
+ *       - name: status
+ *         in: query
+ *         required: false
+ *         description: Filter events by status (moderated/unmoderated)
+ *         schema:
+ *           type: string
+ *       - name: type
+ *         in: query
+ *         required: false
+ *         description: Filter events by type ID
+ *         schema:
+ *           type: integer
+ *       - name: startDate
+ *         in: query
+ *         required: false
+ *         description: Filter events starting from this date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: endDate
+ *         in: query
+ *         required: false
+ *         description: Filter events ending before this date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: date
+ *         in: query
+ *         required: false
+ *         description: Filter events by date (ISO format)
+ *         schema:
+ *           type: string
+ *           format: date-time
+ *       - name: location
+ *         in: query
+ *         required: false
+ *         description: Filter events by location
+ *         schema:
+ *           type: string
+ *       - name: page
+ *         in: query
+ *         required: false
+ *         description: Page number
+ *         schema:
+ *          type: integer
+ *          minimum: 1
+ *          default: 1
+ *       - name: pageSize
+ *         in: query
+ *         required: false
+ *         description: Number of items per page
+ *         schema:
+ *          type: integer
+ *          minimum: 1
+ *          maximum: 100
+ *          default: 10
  *     responses:
  *       200:
  *         description: A list of events
@@ -28,6 +84,41 @@ const router = Router();
  */
 
 router.get("/events", EventController.getEvents);
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     updateEventSchema:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "Hackathon 2025"
+ *         startDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-01T09:00:00.000Z"
+ *         endDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-02T18:00:00.000Z"
+ *         location:
+ *           type: string
+ *           example: "Paris"
+ *         maxParticipants:
+ *           type: integer
+ *           example: 100
+ *         picture:
+ *           type: string
+ *           format: uri
+ *           example: "https://example.com/event.jpg"
+ *         description:
+ *           type: string
+ *           example: "A great tech event"
+ *         typeId:
+ *           type: integer
+ *           example: 2
+ */
 
 /**
  * @swagger
@@ -85,7 +176,6 @@ router.post("/events", EventController.createEvent);
  *         description: ID of the event to retrieve
  *         schema:
  *           type: integer
- *           example: 10
  *     responses:
  *       200:
  *         description: Event details retrieved successfully
@@ -163,16 +253,69 @@ router.get("/events/:id", EventController.getEventById);
 
 /**
  * @swagger
+ * components:
+ *   schemas:
+ *     updateEventSchema:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: "Hackathon 2025"
+ *         responsableId:
+ *           type: integer
+ *           example: 1
+ *         startDate:
+ *           type: string
+ *           format: date-time
+ *           example: "2025-04-01T09:00:00.000Z"
+ *         maxParticipants:
+ *           type: integer
+ *           example: 100
+ *         typeId:
+ *           type: integer
+ *           example: 2
+ */
+
+/**
+ * @swagger
+ * /api/events/{id}:
+ *   put:
+ *     tags:
+ *       - Events
+ *     summary: Update an existing event
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the event to update
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/updateEventSchema'
+ *     responses:
+ *       200:
+ *         description: Event updated successfully
+ *       400:
+ *         description: Invalid request body
+ *       404:
+ *         description: Event not found
+ *       500:
+ *         description: Internal server error
+ */
+router.put("/events/:id", EventController.updateEvent);
+
+/**
+ * @swagger
  * /api/events/{id}:
  *   delete:
  *     tags:
  *       - Events
  *     description: Remove event by ID
- *     parameters:
- *       - name: id
- *         in: path
- *         required: true
- *         description: ID of the event to retrieve
+  *         description: ID of the event to retrieve
  *         schema:
  *           type: integer
  *           example: 10
@@ -182,4 +325,6 @@ router.get("/events/:id", EventController.getEventById);
  */
 
 router.delete("/events/:id", EventController.removeEvent);
+
+
 export default router;

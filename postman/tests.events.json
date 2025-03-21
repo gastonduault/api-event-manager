@@ -1,0 +1,806 @@
+{
+  "info": {
+    "_postman_id": "401ea7a3-6b4f-4ed0-a9ae-3bc5c9208453",
+    "name": "Events",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32481832"
+  },
+  "item": [
+    {
+      "name": "/api/events",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?pageSize=20",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "pageSize",
+              "value": "20"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events status",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?status=moderated",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "status",
+              "value": "moderated"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 status",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?status=moderate",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "status",
+              "value": "moderate"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events location",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?location=Orsay",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "location",
+              "value": "Orsay"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events pagination",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?page=2&pageSize=2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "page",
+              "value": "2"
+            },
+            {
+              "key": "pageSize",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 page negative",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?page=-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "page",
+              "value": "-1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 pageSize negative",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?pageSize=-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "pageSize",
+              "value": "-1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events date",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?date=2025-03-01",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "date",
+              "value": "2025-03-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 date",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?date=2025-13-05",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "date",
+              "value": "2025-13-05"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events startDate",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?startDate=2025-05-01",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2025-05-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events endDate",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?endDate=2025-03-01",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "endDate",
+              "value": "2025-03-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events periode (stardDate & endDate)",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?startDate=2025-03-01&endDate=2025-03-31",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2025-03-01"
+            },
+            {
+              "key": "endDate",
+              "value": "2025-03-31"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 periode (stardDate > endDate)",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?startDate=2026-03-31&endDate=2026-03-01",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2026-03-31"
+            },
+            {
+              "key": "endDate",
+              "value": "2026-03-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events type",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?type=3",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "type",
+              "value": "3"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 type",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?type=type2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "type",
+              "value": "type2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events error 400 unknown filter",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events?unknown=4",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"],
+          "query": [
+            {
+              "key": "unknown",
+              "value": "4"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request with optionals fields",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request all the fields completed",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-03-01\",\r\n  \"endDate\": \"2025-03-03\",\r\n  \"typeId\": 1,\r\n  \"responsableId\": 1,\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"picture\": \"http://example.com/pic.jpg\",\r\n  \"isModerate\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing required field",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Incorrect responsableId",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01T09:00:00.000Z\",\r\n  \"responsableId\": 40,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Incorrect typeId",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 13\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "endDate less than startDate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-10\",\r\n  \"endDate\": \"2025-03-01\",\r\n\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "maxParticipants<0",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"10-03-2025\",\r\n  \"responsableId\": 1,\r\n  \"maxParticipants\":0,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "startDate in the past",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-03-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Incorrect format Date",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"05/04/2025 09:00:00\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events/id Correct request",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/events/42",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "42"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events/id Invalid eventId",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/events/eezdf",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "eezdf"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/events/id Event not found",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/events/500",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "500"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
