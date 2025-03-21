@@ -42,4 +42,8 @@ export class EventService {
   static async removeEvent(eventId: number) {
     return await EventRepository.removeEvent(eventId);
   }
+
+  static async getParticipations(eventId: number) {
+    return await EventRepository.getParticipations(eventId);
+  }
 }

@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { EventService } from "../services/events.service";
-import { eventQuerySchema, eventIdSchema, eventSchema } from "../schemas/events.schema";
+import {
+  eventQuerySchema,
+  eventIdSchema,
+  eventSchema,
+} from "../schemas/events.schema";
 import { prisma } from "../prismaClient";
 
 export class EventController {
@@ -201,7 +205,7 @@ export class EventController {
       res.status(500).send({ error: "Internal server error" });
     }
   }
-   static async removeEvent(req: Request, res: Response) {
+  static async removeEvent(req: Request, res: Response) {
     try {
       const { error } = eventIdSchema.validate(req.params);
 
@@ -219,6 +223,37 @@ export class EventController {
       await EventService.removeEvent(eventId);
 
       res.status(200).json({ message: "Event deleted successfully" });
+    } catch (error) {
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
+
+  static async getParticipations(req: Request, res: Response) {
+    try {
+      const { error } = eventIdSchema.validate(req.params);
+
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+      const eventId = parseInt(req.params.id, 10);
+      const event = await EventService.getEventById(eventId);
+      if (!event) {
+        res.status(404).json({
+          error: "Event not found or access denied",
+          message: `No event found with ID ${eventId}`,
+        });
+        return;
+      }
+      const participations = await EventService.getParticipations(eventId);
+      if (!participations) {
+        res.status(404).json({
+          error: "No participations found",
+          message: `No participations found for event with ID ${eventId}`,
+        });
+        return;
+      }
+      res.status(200).json(participations);
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }

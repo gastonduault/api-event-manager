@@ -294,4 +294,6 @@ router.put("/events/:id", EventController.updateEvent);
 
 router.delete("/events/:id", EventController.removeEvent);
 
+router.get("/events/:id/participations", EventController.getParticipations);
+
 export default router;

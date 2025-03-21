@@ -99,7 +99,7 @@ export class EventRepository {
       const prismaEvent = await prisma.event.create({
         data: {
           ...eventData,
-          isModerate: false,
+          isModerate: true,
         },
       });
 
@@ -139,6 +139,24 @@ export class EventRepository {
       console.error("Prisma Error:", error);
       throw error;
     }
+  }
+  static async getParticipations(eventId: number) {
+    const participations = await prisma.participation.findMany({
+      where: {
+        eventId,
+      },
+      select: {
+        user: {
+          select: {
+            id: true,
+            firstname: true,
+            lastname: true,
+          },
+        },
+      },
+    });
+
+    return participations.map((participation) => participation.user);
   }
 }
 
