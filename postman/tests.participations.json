@@ -1,0 +1,479 @@
+{
+  "info": {
+    "_postman_id": "4c8bdc02-c964-49ec-9a6f-a5c2ec96b7de",
+    "name": "Participations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32481832"
+  },
+  "item": [
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId}",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/5/events/35",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "5", "events", "35"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/participations/users/{userId}/events/{eventId} error 400 must be number Copy",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/5/events/35",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "5", "events", "35"]
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "2"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:53:46 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 400 user already participates in event",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/2/events/35",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "2", "events", "35"]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/2/events/35",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "2", "events", "35"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "71"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"47-pqHm8jPNGnG7nNVdJ6fL3KMB2Nc\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:52:30 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 400,\n    \"message\": \"User 2 is already participating in event 35.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 400 must be number",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/{userId}/events/{eventId}",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "participations",
+            "users",
+            "{userId}",
+            "events",
+            "{eventId}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 400 participation denied startDate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/{userId}/events/{eventId}",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": [
+            "api",
+            "participations",
+            "users",
+            "{userId}",
+            "events",
+            "{eventId}"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/participations/users/{userId}/events/{eventId} error 400 must be number Copy",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/2/events/37",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "2", "events", "37"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "78"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"4e-4DaZ+l1M9dzLI+MaOm34C1pqMks\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:57:17 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 400,\n    \"message\": \"Participation denied: Event 37 has already started.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 404 user not existing",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/50/events/35",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "50", "events", "35"]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/50/events/35",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "50", "events", "35"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "45"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2d-cVqp3wKOsFmX2Xr496SbKj4bRGI\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:55:18 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 404,\n    \"message\": \"User 50 not found.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 404 event not existing",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/50/events/35",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "50", "events", "35"]
+        }
+      },
+      "response": [
+        {
+          "name": "/api/participations/users/{userId}/events/{eventId} error 404 user not existing Copy",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/5/events/100",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "5", "events", "100"]
+            }
+          },
+          "status": "Not Found",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "47"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"2f-X+7sEbulI5SriSgm+qWN3hJd6ms\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:56:04 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 404,\n    \"message\": \"Event 100 not found.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error 400 event full",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/2/events/33",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "2", "events", "33"]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/2/events/33",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "2", "events", "33"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "66"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"42-UYzndQyUWNxkBZm8GLqNydiNUhI\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 16:58:48 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 400,\n    \"message\": \"Participation denied: Event 33 is full.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "/api/participations/users/{userId}/events/{eventId} error event not moderated",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/2/events/38",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "2", "events", "38"]
+        }
+      },
+      "response": [
+        {
+          "name": "New Request",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "localhost:3000/api/participations/users/2/events/38",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "participations", "users", "2", "events", "38"]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "X-Powered-By",
+              "value": "Express"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "75"
+            },
+            {
+              "key": "ETag",
+              "value": "W/\"4b-LT0IQJjIapviKNPuTfX9ZzYGl8c\""
+            },
+            {
+              "key": "Date",
+              "value": "Fri, 21 Mar 2025 17:00:11 GMT"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=5"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"status\": 400,\n    \"message\": \"Participation denied: Event 38 is not moderated.\"\n}"
+        }
+      ]
+    }
+  ]
+}
