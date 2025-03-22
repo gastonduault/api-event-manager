@@ -88,3 +88,26 @@ export async function authorizeAdmin(
     return res.status(500).json({ message: "Internal server error" });
   }
 }
+
+export async function authorizeBasedOnParams(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userId = (req as any).user.userId;
+    const user = await UsersService.getUserById(userId);
+
+    const paramName = req.params.name;
+
+    if (paramName === "someValue" && !user?.isAdmin) {
+      return res
+        .status(403)
+        .json({ message: "Access denied for this parameter" });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
