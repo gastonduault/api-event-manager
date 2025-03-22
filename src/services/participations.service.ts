@@ -54,4 +54,38 @@ export class ParticipationService {
       };
     }
   }
+  static async cancelParticipation(userId: number, eventId: number) {
+    const user = await UsersRepository.getUserById(userId);
+    if (!user) {
+      throw { status: 404, message: `User ${userId} not found.` };
+    }
+    const event = await EventRepository.getEventById(eventId);
+    if (!event) {
+      throw { status: 404, message: `Event ${eventId} not found.` };
+    }
+    try {
+      return await ParticipationRepository.cancelParticipation(userId, eventId);
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+      ) {
+        throw {
+          status: 400,
+          message: `User ${userId} is not participating in event ${eventId}.`,
+        };
+      }
+      throw {
+        status: 500,
+        message: `An unexpected error occurred: ${error.message}`,
+      };
+    }
+  }
+
+  static async findByUserIdAndEventId(userId: number, eventId: number) {
+    return await ParticipationRepository.findByUserIdAndEventId(
+      userId,
+      eventId,
+    );
+  }
 }
