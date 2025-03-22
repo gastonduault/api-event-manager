@@ -26,4 +26,10 @@ export class ParticipationRepository {
 
     return Participation.fromPrisma(participation);
   }
+
+  static async findByUserIdAndEventId(userId: number, eventId: number) {
+    return prisma.participation.findUnique({
+      where: { userId_eventId: { userId, eventId } },
+    });
+  }
 }

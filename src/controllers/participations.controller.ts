@@ -38,11 +38,27 @@ export class ParticipationController {
         res.status(400).send({ error: error.details[0].message });
         return;
       }
-      const participation = await ParticipationService.cancelParticipation(
+
+      const participation = await ParticipationService.findByUserIdAndEventId(
         Number(userId),
         Number(eventId),
       );
-      res.status(200).json(participation);
+      if (!participation) {
+        res
+          .status(404)
+          .json({
+            message: `User ${userId} is not participating in event ${eventId}`,
+          });
+        return;
+      }
+
+      await ParticipationService.cancelParticipation(
+        Number(userId),
+        Number(eventId),
+      );
+      res
+        .status(200)
+        .json({ message: "User participation successfully canceled" });
     } catch (error) {
       const status = error.status || 500;
       const message = error.message || "Internal server error";

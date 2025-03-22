@@ -81,4 +81,11 @@ export class ParticipationService {
       };
     }
   }
+
+  static async findByUserIdAndEventId(userId: number, eventId: number) {
+    return await ParticipationRepository.findByUserIdAndEventId(
+      userId,
+      eventId,
+    );
+  }
 }
