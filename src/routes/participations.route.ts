@@ -34,5 +34,36 @@ router.post(
   "/participations/users/:userId/events/:eventId",
   ParticipationController.participate,
 );
-
+/**
+ * @swagger
+ * /api/participations/users/{userId}/events/{eventId}:
+ *   delete:
+ *     tags:
+ *       - Participations
+ *     summary: Cancel user participation in an event
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the user
+ *       - in: path
+ *         name: eventId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the event
+ *     responses:
+ *       200:
+ *         description: User participation successfully canceled
+ *       400:
+ *         description: Invalid request parameters
+ *       404:
+ *         description: Event not found
+ */
+router.delete(
+  "/participations/users/:userId/events/:eventId",
+  ParticipationController.cancelParticipation,
+);
 export default router;

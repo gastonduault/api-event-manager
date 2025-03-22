@@ -18,4 +18,12 @@ export class ParticipationRepository {
       where: { eventId },
     });
   }
+
+  static async cancelParticipation(userId: number, eventId: number) {
+    const participation = await prisma.participation.delete({
+      where: { userId_eventId: { userId, eventId } },
+    });
+
+    return Participation.fromPrisma(participation);
+  }
 }
