@@ -76,4 +76,8 @@ export class UsersService {
   static async getUsers(filters: any) {
     return await UsersRepository.getUsers(filters);
   }
+
+  static async getUserById(userId: number) {
+    return await UsersRepository.getUserById(userId);
+  }
 }
