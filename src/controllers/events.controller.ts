@@ -187,6 +187,15 @@ export class EventController {
         res.status(404).json({ error: "Event not found" });
         return;
       }
+
+      const userId = (req as any).user?.userId;
+      if (userId !== event.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to delete this event",
+        });
+        return;
+      }
       await EventService.removeEvent(eventId);
 
       res.status(200).json({ message: "Event deleted successfully" });

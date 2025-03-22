@@ -313,12 +313,7 @@ router.put(
  *         description: Event deleted successfully
  */
 
-router.delete(
-  "/events/:id",
-  authenticateUser,
-  authorizeUserEvent,
-  EventController.removeEvent,
-);
+router.delete("/events/:id", authenticateUser, EventController.removeEvent);
 
 /**
  * @swagger
