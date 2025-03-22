@@ -7,6 +7,7 @@ import {
 } from "../schemas/events.schema";
 import { prisma } from "../prismaClient";
 import { paginationSchema } from "../schemas/types.schema";
+import { ParticipationResponse } from "../entities/participations.entity";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -247,9 +248,13 @@ export class EventController {
         return;
       }
       const { error: errorPage, value } = paginationSchema.validate(req.query);
+      if (errorPage) {
+        res.status(400).json({ error: errorPage.details[0].message });
+      }
+
       const filters = {
-        page: value.page || 1,
-        pageSize: value.pageSize || 10,
+        page: value.page ? parseInt(value.page, 10) : 1,
+        pageSize: value.pageSize ? parseInt(value.pageSize, 10) : 10,
       };
       const participations = await EventService.getParticipations(
         eventId,
@@ -262,7 +267,9 @@ export class EventController {
         });
         return;
       }
-      res.status(200).json(participations);
+      const response = participations.map(ParticipationResponse.fromPrisma);
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }
