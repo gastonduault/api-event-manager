@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { ParticipationController } from "../controllers/participations.controller";
+import { authenticateUser } from "../middlewares/authentication.middleware";
 const router = Router();
 
 /**
@@ -41,6 +42,8 @@ router.post(
  *     tags:
  *       - Participations
  *     summary: Cancel user participation in an event
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: userId
@@ -64,6 +67,7 @@ router.post(
  */
 router.delete(
   "/participations/users/:userId/events/:eventId",
+  authenticateUser,
   ParticipationController.cancelParticipation,
 );
 export default router;

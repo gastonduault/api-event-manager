@@ -49,6 +49,14 @@ export class ParticipationController {
         });
         return;
       }
+      const userIdFromToken = (req as any).user?.userId;
+      console.log(userIdFromToken);
+      if (userIdFromToken !== Number(userId)) {
+        res.status(403).json({
+          message: "You are not authorized to cancel this participation",
+        });
+        return;
+      }
 
       await ParticipationService.cancelParticipation(
         Number(userId),
