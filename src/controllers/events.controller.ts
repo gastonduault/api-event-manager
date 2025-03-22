@@ -221,6 +221,16 @@ export class EventController {
         });
         return;
       }
+
+      const userId = (req as any).user?.userId;
+      if (userId !== event.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to access this event",
+        });
+        return;
+      }
+
       const { error: errorPage, value } = paginationSchema.validate(req.query);
       if (errorPage) {
         res.status(400).json({ error: errorPage.details[0].message });

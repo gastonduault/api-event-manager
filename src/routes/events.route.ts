@@ -350,7 +350,6 @@ router.delete("/events/:id", authenticateUser, EventController.removeEvent);
 router.get(
   "/events/:id/participations",
   authenticateUser,
-  authorizeUserEvent,
   EventController.getParticipations,
 );
 
