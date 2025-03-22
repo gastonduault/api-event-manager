@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "dev": "nodemon src/app.ts",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
     "setup_prisma": "prisma db push && prisma generate && ts-node prisma/seed.ts && echo Prisma setup done! || echo Prisma setup failed!"
