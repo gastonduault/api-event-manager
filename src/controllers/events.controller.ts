@@ -152,6 +152,15 @@ export class EventController {
         return;
       }
 
+      const userId = (req as any).user?.userId;
+      if (userId !== existingEvent.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to update this event",
+        });
+        return;
+      }
+
       const event = await EventService.updateEvent(eventId, value);
 
       res.status(200).json(event);
