@@ -6,6 +6,7 @@ import {
   eventSchema,
 } from "../schemas/events.schema";
 import { prisma } from "../prismaClient";
+import { paginationSchema } from "../schemas/types.schema";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -245,7 +246,15 @@ export class EventController {
         });
         return;
       }
-      const participations = await EventService.getParticipations(eventId);
+      const { error: errorPage, value } = paginationSchema.validate(req.query);
+      const filters = {
+        page: value.page || 1,
+        pageSize: value.pageSize || 10,
+      };
+      const participations = await EventService.getParticipations(
+        eventId,
+        filters,
+      );
       if (!participations) {
         res.status(404).json({
           error: "No participations found",

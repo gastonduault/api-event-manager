@@ -43,7 +43,7 @@ export class EventService {
     return await EventRepository.removeEvent(eventId);
   }
 
-  static async getParticipations(eventId: number) {
-    return await EventRepository.getParticipations(eventId);
+  static async getParticipations(eventId: number, filters: any) {
+    return await EventRepository.getParticipations(eventId, filters);
   }
 }
