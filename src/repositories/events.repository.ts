@@ -1,5 +1,6 @@
 import { prisma } from "../prismaClient";
 import { Event } from "../entities/events.entity";
+import { Prisma } from "@prisma/client";
 
 export class EventRepository {
   static async getEvents(filters: any): Promise<{
@@ -99,7 +100,7 @@ export class EventRepository {
       const prismaEvent = await prisma.event.create({
         data: {
           ...eventData,
-          isModerate: false,
+          isModerate: true,
         },
       });
 
@@ -139,6 +140,31 @@ export class EventRepository {
       console.error("Prisma Error:", error);
       throw error;
     }
+  }
+  static async getParticipations(eventId: number, filters: any) {
+    const { page, pageSize } = filters;
+    const pageNumber = Math.max(1, parseInt(page));
+    const pageSizeNumber = Math.max(1, parseInt(pageSize));
+    const limit = pageSizeNumber;
+    const offset = (pageNumber - 1) * pageSizeNumber;
+    const participations = await prisma.participation.findMany({
+      take: limit,
+      skip: offset,
+      where: {
+        eventId,
+      },
+      select: {
+        user: {
+          select: {
+            id: true,
+            firstname: true,
+            lastname: true,
+          },
+        },
+      },
+    });
+
+    return participations.map((participation) => participation.user);
   }
 }
 

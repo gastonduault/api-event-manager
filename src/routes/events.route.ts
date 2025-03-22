@@ -294,4 +294,36 @@ router.put("/events/:id", EventController.updateEvent);
 
 router.delete("/events/:id", EventController.removeEvent);
 
+/**
+ * @swagger
+ * /api/events/{id}/participations:
+ *   get:
+ *     tags:
+ *       - Events
+ *     summary: Get the list of participants for an event
+ *     parameters:
+ *          - name: id
+ *            in: path
+ *            required: true
+ *            schema:
+ *              type: integer
+ *            description: ID of the event to retrieve participants
+ *          - in: query
+ *            name: page
+ *            schema:
+ *              type: integer
+ *              default: 1
+ *            description: Page number
+ *          - in: query
+ *            name: pageSize
+ *            schema:
+ *              type: integer
+ *              default: 10
+ *            description: Number of items per page
+ *     responses:
+ *       204:
+ *         description: Event deleted successfully
+ */
+router.get("/events/:id/participations", EventController.getParticipations);
+
 export default router;

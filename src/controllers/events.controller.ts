@@ -5,6 +5,9 @@ import {
   eventIdSchema,
   eventSchema,
 } from "../schemas/events.schema";
+import { prisma } from "../prismaClient";
+import { paginationSchema } from "../schemas/types.schema";
+import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
 
@@ -178,6 +181,51 @@ export class EventController {
       await EventService.removeEvent(eventId);
 
       res.status(200).json({ message: "Event deleted successfully" });
+    } catch (error) {
+      res.status(500).send({ error: "Internal server error" });
+    }
+  }
+
+  static async getParticipations(req: Request, res: Response) {
+    try {
+      const { error } = eventIdSchema.validate(req.params);
+
+      if (error) {
+        res.status(400).json({ error: error.details[0].message });
+        return;
+      }
+      const eventId = parseInt(req.params.id, 10);
+      const event = await EventService.getEventById(eventId);
+      if (!event) {
+        res.status(404).json({
+          error: "Event not found or access denied",
+          message: `No event found with ID ${eventId}`,
+        });
+        return;
+      }
+      const { error: errorPage, value } = paginationSchema.validate(req.query);
+      if (errorPage) {
+        res.status(400).json({ error: errorPage.details[0].message });
+      }
+
+      const filters = {
+        page: value.page ? parseInt(value.page, 10) : 1,
+        pageSize: value.pageSize ? parseInt(value.pageSize, 10) : 10,
+      };
+      const participations = await EventService.getParticipations(
+        eventId,
+        filters,
+      );
+      if (!participations) {
+        res.status(404).json({
+          error: "No participations found",
+          message: `No participations found for event with ID ${eventId}`,
+        });
+        return;
+      }
+      const response = participations.map(ParticipationResponse.fromPrisma);
+
+      res.status(200).json(response);
     } catch (error) {
       res.status(500).send({ error: "Internal server error" });
     }
