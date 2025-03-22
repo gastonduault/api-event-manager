@@ -14,11 +14,20 @@ export class ParticipationController {
         res.status(400).send({ error: error.details[0].message });
         return;
       }
+      const userIdFromToken = (req as any).user?.userId;
+      if (userIdFromToken !== Number(userId)) {
+        res.status(403).json({
+          message: "You are not authorized to add this user",
+        });
+        return;
+      }
       const participation = await ParticipationService.participate(
         Number(userId),
         Number(eventId),
       );
-      res.status(201).json(participation);
+      res
+        .status(201)
+        .json({ message: "User participation successfully registered" });
     } catch (error) {
       const status = error.status || 500;
       const message = error.message || "Internal server error";
@@ -50,7 +59,6 @@ export class ParticipationController {
         return;
       }
       const userIdFromToken = (req as any).user?.userId;
-      console.log(userIdFromToken);
       if (userIdFromToken !== Number(userId)) {
         res.status(403).json({
           message: "You are not authorized to cancel this participation",

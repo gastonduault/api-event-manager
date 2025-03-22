@@ -10,6 +10,8 @@ const router = Router();
  *     tags:
  *       - Participations
  *     summary: User participation in an event
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: userId
@@ -33,6 +35,7 @@ const router = Router();
  */
 router.post(
   "/participations/users/:userId/events/:eventId",
+  authenticateUser,
   ParticipationController.participate,
 );
 /**
