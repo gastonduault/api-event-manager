@@ -48,6 +48,12 @@ export class UsersRepository {
       ) {
         throw new Error("User not found");
       }
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+      ) {
+        throw new Error("Email already exists");
+      }
       throw error;
     }
   }

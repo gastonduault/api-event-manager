@@ -17,10 +17,10 @@ export class UsersService {
       throw new Error(error.details[0].message);
     }
 
-    // already exist ?
+    // Check if user already exists
     let existingUser = await UsersRepository.getUserByEmail(userData.email);
     if (existingUser) {
-      // check email and password for returning a token
+      // Check email and password for returning a token
       const isPasswordValid = await bcrypt.compare(
         userData.password,
         existingUser.password,
@@ -41,7 +41,7 @@ export class UsersService {
       return { user: User.fromPrismaExternal(existingUser), token };
     }
 
-    // new user
+    // New user
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const userWithHashedPassword = { ...userData, password: hashedPassword };
 
@@ -53,7 +53,7 @@ export class UsersService {
       { expiresIn: "24h" },
     );
 
-    return { user: User.fromPrismaExternal(existingUser), token };
+    return { user: User.fromPrismaExternal(newUser), token };
   }
 
   static async updateUser(userId: number, updatedData: any) {
