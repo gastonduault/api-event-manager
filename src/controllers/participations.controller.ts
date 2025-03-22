@@ -44,11 +44,9 @@ export class ParticipationController {
         Number(eventId),
       );
       if (!participation) {
-        res
-          .status(404)
-          .json({
-            message: `User ${userId} is not participating in event ${eventId}`,
-          });
+        res.status(400).json({
+          message: `User  ${userId} is not registered for this event ${eventId}`,
+        });
         return;
       }
 
