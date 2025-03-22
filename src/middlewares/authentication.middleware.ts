@@ -48,3 +48,24 @@ export const authorizeUser = (
 
   next();
 };
+
+export const authorizeUserEvent = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  const userIdFromToken = (req as any).user?.userId;
+  const userIdFromParams = parseInt(req.body.responsableId, 10);
+
+  if (isNaN(userIdFromParams) || userIdFromToken !== userIdFromParams) {
+    res
+      .status(403)
+      .json({
+        error:
+          "Forbidden: You are not allowed to create/modify an event for this user",
+      });
+    return;
+  }
+
+  next();
+};

@@ -1,5 +1,10 @@
 import { Router } from "express";
 import { EventController } from "../controllers/events.controller";
+import {
+  authenticateUser,
+  authorizeUser,
+  authorizeUserEvent,
+} from "../middlewares/authentication.middleware";
 
 const router = Router();
 
@@ -92,6 +97,8 @@ router.get("/events", EventController.getEvents);
  *     tags:
  *       - Events
  *     summary: Create a new event
+ *     security:
+ *       - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -125,7 +132,12 @@ router.get("/events", EventController.getEvents);
  *       500:
  *         description: Server error
  */
-router.post("/events", EventController.createEvent);
+router.post(
+  "/events",
+  authenticateUser,
+  authorizeUserEvent,
+  EventController.createEvent,
+);
 
 /**
  * @swagger
@@ -248,6 +260,8 @@ router.get("/events/:id", EventController.getEventById);
  *     tags:
  *       - Events
  *     summary: Update an existing event
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -271,7 +285,12 @@ router.get("/events/:id", EventController.getEventById);
  *       500:
  *         description: Internal server error
  */
-router.put("/events/:id", EventController.updateEvent);
+router.put(
+  "/events/:id",
+  authenticateUser,
+  authorizeUserEvent,
+  EventController.updateEvent,
+);
 
 /**
  * @swagger
@@ -280,6 +299,8 @@ router.put("/events/:id", EventController.updateEvent);
  *     tags:
  *       - Events
  *     summary: Remove event by ID
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -292,7 +313,7 @@ router.put("/events/:id", EventController.updateEvent);
  *         description: Event deleted successfully
  */
 
-router.delete("/events/:id", EventController.removeEvent);
+router.delete("/events/:id", authenticateUser, EventController.removeEvent);
 
 /**
  * @swagger
@@ -301,6 +322,8 @@ router.delete("/events/:id", EventController.removeEvent);
  *     tags:
  *       - Events
  *     summary: Get the list of participants for an event
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *          - name: id
  *            in: path
@@ -324,6 +347,10 @@ router.delete("/events/:id", EventController.removeEvent);
  *       204:
  *         description: Event deleted successfully
  */
-router.get("/events/:id/participations", EventController.getParticipations);
+router.get(
+  "/events/:id/participations",
+  authenticateUser,
+  EventController.getParticipations,
+);
 
 export default router;

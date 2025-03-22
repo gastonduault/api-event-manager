@@ -152,6 +152,15 @@ export class EventController {
         return;
       }
 
+      const userId = (req as any).user?.userId;
+      if (userId !== existingEvent.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to update this event",
+        });
+        return;
+      }
+
       const event = await EventService.updateEvent(eventId, value);
 
       res.status(200).json(event);
@@ -176,6 +185,15 @@ export class EventController {
       const event = await EventService.getEventById(eventId);
       if (!event) {
         res.status(404).json({ error: "Event not found" });
+        return;
+      }
+
+      const userId = (req as any).user?.userId;
+      if (userId !== event.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to delete this event",
+        });
         return;
       }
       await EventService.removeEvent(eventId);
@@ -203,6 +221,16 @@ export class EventController {
         });
         return;
       }
+
+      const userId = (req as any).user?.userId;
+      if (userId !== event.responsableId) {
+        res.status(403).json({
+          error: "Access denied",
+          message: "You are not allowed to access this event",
+        });
+        return;
+      }
+
       const { error: errorPage, value } = paginationSchema.validate(req.query);
       if (errorPage) {
         res.status(400).json({ error: errorPage.details[0].message });
