@@ -151,7 +151,8 @@ export class EventController {
         });
         return;
       }
-      const { error: bodyError, value } = eventSchema.validate(req.body, {
+      const { campaignId, ...eventData } = req.body;
+      const { error: bodyError, value } = eventSchema.validate(eventData, {
         abortEarly: false,
       });
       if (bodyError) {
@@ -189,7 +190,33 @@ export class EventController {
         });
         return;
       }
+      if (campaignId) {
+        const campaignExists =
+          await CampaignKeeperService.getCampaignById(campaignId);
 
+        if (!campaignExists) {
+          res.status(404).json({
+            error: "Invalid campaignId",
+            message: `No campaign found with ID ${campaignId}`,
+          });
+          return;
+        }
+        const event = await EventService.updateEvent(eventId, value);
+        try {
+          const campaignSession = await CampaignKeeperService.createSession(
+            campaignId,
+            "http://localhost:3000/api/events/" + event.id,
+          );
+          console.log("Campaign session created", campaignSession);
+          res.status(201).json(event);
+          return;
+        } catch (error) {
+          console.error("Error creating campaign session", error);
+          res
+            .status(500)
+            .json({ error: "Internal server error", message: error.message });
+        }
+      }
       const event = await EventService.updateEvent(eventId, value);
 
       res.status(200).json(event);
