@@ -116,4 +116,50 @@ export const authorizeBasedOnParams = async (
     res.status(500).json({ message: "Internal server error" });
     return;
   }
+}
+
+export async function authorizeSelfOrAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userIdFromToken = (req as any).user.userId;
+    const userIdFromParams = parseInt(req.params.userId, 10);
+    const user = await UsersService.getUserById(userIdFromToken);
+
+    if (!user || (userIdFromToken !== userIdFromParams && !user.isAdmin)) {
+      res.status(403).json({
+        message:
+          "Permission denied: you are not authorised to add someone else's participation or need admin rights",
+      });
+      return;
+    }
+
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+    return;
+  }
+}
+
+export const optionalAuth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET) as { userId: number };
+      if (decoded) (req as any).user = decoded;
+    } catch (error) {
+      // Token invalide → Laisse l'utilisateur non authentifié
+    }
+  }
+
+  next();
 };
