@@ -126,7 +126,7 @@ router.delete(
  *   get:
  *     tags:
  *       - Users
- *     summary: Get a list of users with pagination and search
+ *     summary: Get a list of users with pagination and search (only for ADMIN)
  *     security:
  *       - BearerAuth: []
  *     parameters:
