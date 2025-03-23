@@ -24,7 +24,7 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: "development"
-      DATABASE_URL: "${DATABASE_URL}"
+      DATABASE_URL: "${DATABASE_URL_DOCKER}"
     depends_on:
       db:
         condition: service_healthy

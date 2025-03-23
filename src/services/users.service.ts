@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../entities/users.entitie";
 import { UsersRepository } from "../repositories/users.repository";
