@@ -1,5 +1,9 @@
 import { Router } from "express";
 import { TypeController } from "../controllers/types.controller";
+import {
+  authenticateUser,
+  authorizeAdmin,
+} from "../middlewares/authentication.middleware";
 const router = Router();
 
 /**
@@ -83,6 +87,8 @@ router.get("/types/:id", TypeController.getTypeById);
  *     tags:
  *       - Types
  *     summary: Create a new type
+ *     security:
+ *      - BearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -100,8 +106,15 @@ router.get("/types/:id", TypeController.getTypeById);
  *         description: Missing required field
  *       409:
  *         description: Type already exists
+ *       403:
+ *         description: Forbidden
  */
-router.post("/types", TypeController.createType);
+router.post(
+  "/types",
+  authenticateUser,
+  authorizeAdmin,
+  TypeController.createType,
+);
 
 /**
  * @swagger
@@ -110,6 +123,8 @@ router.post("/types", TypeController.createType);
  *     tags:
  *       - Types
  *     summary: Update an existing type
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -137,7 +152,12 @@ router.post("/types", TypeController.createType);
  *       409:
  *         description: Type already exists
  */
-router.put("/types/:id", TypeController.updateType);
+router.put(
+  "/types/:id",
+  authenticateUser,
+  authorizeAdmin,
+  TypeController.updateType,
+);
 
 /**
  * @swagger
@@ -146,6 +166,8 @@ router.put("/types/:id", TypeController.updateType);
  *     tags:
  *       - Types
  *     summary: Delete a type
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -163,6 +185,11 @@ router.put("/types/:id", TypeController.updateType);
  *       409:
  *         description: Type already exists
  */
-router.delete("/types/:id", TypeController.deleteType);
+router.delete(
+  "/types/:id",
+  authenticateUser,
+  authorizeAdmin,
+  TypeController.deleteType,
+);
 
 export default router;

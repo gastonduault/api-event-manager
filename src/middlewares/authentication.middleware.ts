@@ -80,12 +80,14 @@ export async function authorizeAdmin(
     const user = await UsersService.getUserById(userId);
 
     if (!user || !user.isAdmin) {
-      return res.status(403).json({ message: "Admin access required" });
+      res.status(403).json({ message: "Admin access required" });
+      return;
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error" });
+    return;
   }
 }
 
@@ -123,12 +125,10 @@ export async function authorizeSelfOrAdmin(
     const user = await UsersService.getUserById(userIdFromToken);
 
     if (!user || (userIdFromToken !== userIdFromParams && !user.isAdmin)) {
-      res
-        .status(403)
-        .json({
-          message:
-            "Permission denied: you are not authorised to add someone else's participation or need admin rights",
-        });
+      res.status(403).json({
+        message:
+          "Permission denied: you are not authorised to add someone else's participation or need admin rights",
+      });
       return;
     }
 
