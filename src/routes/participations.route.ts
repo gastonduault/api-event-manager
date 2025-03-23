@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { ParticipationController } from "../controllers/participations.controller";
-import { authenticateUser } from "../middlewares/authentication.middleware";
+import {
+  authenticateUser,
+  authorizeSelfOrAdmin,
+} from "../middlewares/authentication.middleware";
 const router = Router();
 
 /**
@@ -36,6 +39,7 @@ const router = Router();
 router.post(
   "/participations/users/:userId/events/:eventId",
   authenticateUser,
+  authorizeSelfOrAdmin,
   ParticipationController.participate,
 );
 /**

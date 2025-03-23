@@ -111,3 +111,30 @@ export async function authorizeBasedOnParams(
     return res.status(500).json({ message: "Internal server error" });
   }
 }
+
+export async function authorizeSelfOrAdmin(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  try {
+    const userIdFromToken = (req as any).user.userId;
+    const userIdFromParams = parseInt(req.params.userId, 10);
+    const user = await UsersService.getUserById(userIdFromToken);
+
+    if (!user || (userIdFromToken !== userIdFromParams && !user.isAdmin)) {
+      res
+        .status(403)
+        .json({
+          message:
+            "Permission denied: you are not authorised to add someone else's participation or need admin rights",
+        });
+      return;
+    }
+
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+    return;
+  }
+}
