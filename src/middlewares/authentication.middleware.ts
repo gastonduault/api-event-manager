@@ -138,3 +138,24 @@ export async function authorizeSelfOrAdmin(
     return;
   }
 }
+
+export const optionalAuth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  const authHeader = req.headers.authorization;
+
+  if (authHeader) {
+    const token = authHeader.split(" ")[1];
+
+    try {
+      const decoded = jwt.verify(token, JWT_SECRET) as { userId: number };
+      if (decoded) (req as any).user = decoded;
+    } catch (error) {
+      // Token invalide → Laisse l'utilisateur non authentifié
+    }
+  }
+
+  next();
+};
