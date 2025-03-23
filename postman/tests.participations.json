@@ -474,6 +474,76 @@
           "body": "{\n    \"status\": 400,\n    \"message\": \"Participation denied: Event 38 is not moderated.\"\n}"
         }
       ]
+    },
+    {
+      "name": "Correct request",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/1/events/60",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "1", "events", "60"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid user",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/zef/events/60",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "zef", "events", "60"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User not found",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/1/events/60",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "1", "events", "60"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid event",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/9/events/FRG",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "9", "events", "FRG"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User not in the Event",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/participations/users/1/events/60",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "participations", "users", "1", "events", "60"]
+        }
+      },
+      "response": []
     }
   ]
 }

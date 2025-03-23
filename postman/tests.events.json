@@ -554,13 +554,36 @@
       "response": []
     },
     {
+      "name": "Correct request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events"]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "Correct request with optionals fields",
       "request": {
         "method": "POST",
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-11-01\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -583,7 +606,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-03-01\",\r\n  \"endDate\": \"2025-03-03\",\r\n  \"typeId\": 1,\r\n  \"responsableId\": 1,\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"picture\": \"http://example.com/pic.jpg\",\r\n  \"isModerate\": false\r\n}",
+          "raw": "{\r\n  \"name\": \"Hackathon 2025\",\r\n  \"startDate\": \"2025-11-01\",\r\n  \"endDate\": \"2025-11-03\",\r\n  \"typeId\": 1,\r\n  \"responsableId\": 1,\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"picture\": \"http://example.com/pic.jpg\",\r\n  \"isModerate\": false\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -629,7 +652,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01T09:00:00.000Z\",\r\n  \"responsableId\": 40,\r\n  \"typeId\": 1\r\n}",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-11-01T09:00:00.000Z\",\r\n  \"responsableId\": 123,\r\n  \"typeId\": 1\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -652,7 +675,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 13\r\n}",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-11-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 13\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -675,7 +698,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-03-10\",\r\n  \"endDate\": \"2025-03-01\",\r\n\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-11-10\",\r\n  \"endDate\": \"2025-11-01\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -698,7 +721,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"10-03-2025\",\r\n  \"responsableId\": 1,\r\n  \"maxParticipants\":0,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
+          "raw": "{\r\n  \"name\": \"Flea Market 2025\",\r\n  \"startDate\": \"2025-11-01\",\r\n  \"responsableId\": 1,\r\n  \"maxParticipants\":0,\r\n  \"typeId\": 1,\r\n  \"description\": \"big market in Paris\",\r\n  \"location\": \"Paris\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -761,7 +784,7 @@
       "response": []
     },
     {
-      "name": "/api/events/id Correct request",
+      "name": "Correct request",
       "request": {
         "method": "GET",
         "header": [],
@@ -775,7 +798,7 @@
       "response": []
     },
     {
-      "name": "/api/events/id Invalid eventId",
+      "name": "Invalid eventId",
       "request": {
         "method": "GET",
         "header": [],
@@ -789,7 +812,7 @@
       "response": []
     },
     {
-      "name": "/api/events/id Event not found",
+      "name": "Event not found",
       "request": {
         "method": "GET",
         "header": [],
@@ -798,6 +821,556 @@
           "host": ["localhost"],
           "port": "3000",
           "path": ["api", "events", "500"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Tomorrowland 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"endDate\": \"2025-04-02T18:00:00.000Z\",\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"description\": \"A great tech event\",\r\n  \"typeId\": 2,\r\n  \"responsableId\": 7\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/13",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "13"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing required field",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"responsableId\": 1,\r\n  \"typeId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/13",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "13"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid id",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Tomorrowland 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"endDate\": \"2025-04-02T18:00:00.000Z\",\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"picture\": \"https://example.com/event.jpg\",\r\n  \"description\": \"A great tech event\",\r\n  \"typeId\": 2,\r\n  \"responsableId\":7\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/ere",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "ere"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid responsableId",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Tomorrowland 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"endDate\": \"2025-04-02T18:00:00.000Z\",\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"description\": \"A great tech event\",\r\n  \"typeId\": 2,\r\n  \"responsableId\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/10",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "10"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid typeId",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Tomorrowland 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"endDate\": \"2025-04-02T18:00:00.000Z\",\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"description\": \"A great tech event\",\r\n  \"typeId\":22,\r\n  \"responsableId\": 10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/10",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "10"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Event not found",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Tomorrowland 2025\",\r\n  \"startDate\": \"2025-04-01T09:00:00.000Z\",\r\n  \"endDate\": \"2025-04-02T18:00:00.000Z\",\r\n  \"location\": \"Paris\",\r\n  \"maxParticipants\": 100,\r\n  \"picture\": \"https://example.com/event.jpg\",\r\n  \"description\": \"A great tech event\",\r\n  \"typeId\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/100",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "100"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/17",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "17"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid id",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/FEZF",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "FEZF"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Event not found",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/14",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "14"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Event not found Copy",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/-1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "-1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request without participant",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/6/participations",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "6", "participations"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correct request pagination",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=3&pageSize=1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "3"
+            },
+            {
+              "key": "pageSize",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Lastpage > number participants",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=20&pageSize=1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "20"
+            },
+            {
+              "key": "pageSize",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Number participants> pagesize",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=1&pageSize=2",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "pageSize",
+              "value": "2"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Event not found",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/100/participations",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "100", "participations"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid id",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/zef/participations",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "zef", "participations"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid pageSize",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=3&pageSize=231",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "3"
+            },
+            {
+              "key": "pageSize",
+              "value": "231"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid pageSize Copy",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=3&pageSize=dferfer",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "3"
+            },
+            {
+              "key": "pageSize",
+              "value": "dferfer"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid page",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/events/60/participations?page=zef&pageSize=1",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "events", "60", "participations"],
+          "query": [
+            {
+              "key": "page",
+              "value": "zef"
+            },
+            {
+              "key": "pageSize",
+              "value": "1"
+            }
+          ]
         }
       },
       "response": []
