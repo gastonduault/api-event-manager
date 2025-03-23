@@ -10,11 +10,13 @@ import { paginationSchema } from "../schemas/types.schema";
 import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
+import jwt from "jsonwebtoken";
 import { CampaignKeeperService } from "../services/sessions.service";
 import dotenv from "dotenv";
 
 dotenv.config();
 const EVENT_MANAGER_URL = process.env.EVENT_MANAGER_URL;
+
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -24,8 +26,24 @@ export class EventController {
         res.status(400).send({ error: error.details[0].message });
         return;
       }
+
+      const userId = (req as any).user?.userId;
+
+      const user = userId ? await UsersService.getUserById(userId) : null;
+
+      if (value.status === "unmoderated" && !user?.isAdmin) {
+        res
+          .status(403)
+          .json({ message: "Access denied to unmoderated events" });
+        return;
+      }
+      let statusFilter = "moderated";
+      if (user?.isAdmin) {
+        statusFilter = value.status;
+      }
+
       const filters = {
-        status: value.status,
+        status: statusFilter,
         type: value.type,
         startDate: value.startDate,
         endDate: value.endDate,
@@ -129,6 +147,18 @@ export class EventController {
           error: "Event not found",
           message: `No event found with ID ${eventId}`,
         });
+        return;
+      }
+
+      const userId = (req as any).user?.userId;
+      const user = userId ? await UsersService.getUserById(userId) : null;
+      // Access denied if event is not moderate and user is not the responsable or admin
+      if (
+        !event.isModerate &&
+        userId !== event.responsableId &&
+        !user?.isAdmin
+      ) {
+        res.status(403).json({ message: "Access denied to this event" });
         return;
       }
       res.status(200).json(event);

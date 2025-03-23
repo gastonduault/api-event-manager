@@ -14,13 +14,7 @@ export class ParticipationController {
         res.status(400).send({ error: error.details[0].message });
         return;
       }
-      const userIdFromToken = (req as any).user?.userId;
-      if (userIdFromToken !== Number(userId)) {
-        res.status(403).json({
-          message: "You are not authorized to add this user",
-        });
-        return;
-      }
+
       const participation = await ParticipationService.participate(
         Number(userId),
         Number(eventId),

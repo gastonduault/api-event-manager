@@ -5,6 +5,7 @@ import {
   validateUpdateUser,
 } from "../middlewares/validateHandler.middleware";
 import {
+  authorizeAdmin,
   authenticateUser,
   authorizeUser,
 } from "../middlewares/authentication.middleware";
@@ -155,7 +156,7 @@ router.delete(
  *       500:
  *         description: Internal server error
  */
-router.get("/users", authenticateUser, UserController.getUsers);
+router.get("/users", authenticateUser, authorizeAdmin, UserController.getUsers);
 
 /**
  * @swagger

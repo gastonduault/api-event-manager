@@ -2,7 +2,7 @@ import { Router } from "express";
 import { EventController } from "../controllers/events.controller";
 import {
   authenticateUser,
-  authorizeUser,
+  optionalAuth,
   authorizeUserEvent,
 } from "../middlewares/authentication.middleware";
 
@@ -15,6 +15,8 @@ const router = Router();
  *     tags:
  *       - Events
  *     summary: Get the list of events
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: status
  *         in: query
@@ -88,7 +90,7 @@ const router = Router();
  *
  */
 
-router.get("/events", EventController.getEvents);
+router.get("/events", optionalAuth, EventController.getEvents);
 
 /**
  * @swagger
@@ -146,6 +148,8 @@ router.post(
  *     tags:
  *       - Events
  *     summary: Retrieve event details by ID
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -226,7 +230,7 @@ router.post(
  *                   type: string
  *                   example: "An unexpected error occurred"
  */
-router.get("/events/:id", EventController.getEventById);
+router.get("/events/:id", optionalAuth, EventController.getEventById);
 
 /**
  * @swagger

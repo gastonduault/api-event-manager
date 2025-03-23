@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "tsc && node dist/src/app.js",
     "dev": "nodemon src/app.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -43,6 +43,7 @@
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
+    "bcryptjs": "^2.4.3",
     "express": "^4.21.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
