@@ -10,7 +10,7 @@ import { paginationSchema } from "../schemas/types.schema";
 import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
-import { SessionService } from "../services/sessions.service";
+import { CampaignKeeperService } from "../services/sessions.service";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -73,20 +73,35 @@ export class EventController {
         });
         return;
       }
-      const newEvent = await EventService.createEvent(value);
-      try {
-        const campaignSession = await SessionService.createSession(
-          campaignId,
-          "event",
-        );
-        console.log("Campaign session created", campaignSession);
-        res.status(201).json(newEvent);
-      } catch (error) {
-        console.error("Error creating campaign session", error);
-        res
-          .status(500)
-          .json({ error: "Internal server error", message: error.message });
+      if (campaignId) {
+        const campaignExists =
+          await CampaignKeeperService.getCampaignById(campaignId);
+
+        if (!campaignExists) {
+          res.status(404).json({
+            error: "Invalid campaignId",
+            message: `No campaign found with ID ${campaignId}`,
+          });
+          return;
+        }
+        const newEvent = await EventService.createEvent(value);
+        try {
+          const campaignSession = await CampaignKeeperService.createSession(
+            campaignId,
+            "http://localhost:3000/api/events/" + newEvent.id,
+          );
+          console.log("Campaign session created", campaignSession);
+          res.status(201).json(newEvent);
+          return;
+        } catch (error) {
+          console.error("Error creating campaign session", error);
+          res
+            .status(500)
+            .json({ error: "Internal server error", message: error.message });
+        }
       }
+      const newEvent = await EventService.createEvent(value);
+      res.status(201).json(newEvent);
     } catch (error) {
       console.error("Server Error:", error);
       res
