@@ -11,6 +11,12 @@ import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
 import jwt from "jsonwebtoken";
+import { CampaignKeeperService } from "../services/sessions.service";
+import dotenv from "dotenv";
+
+dotenv.config();
+const EVENT_MANAGER_URL = process.env.EVENT_MANAGER_URL;
+
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -57,7 +63,8 @@ export class EventController {
 
   static async createEvent(req: Request, res: Response) {
     try {
-      const { error, value } = eventSchema.validate(req.body, {
+      const { campaignId, ...eventData } = req.body;
+      const { error, value } = eventSchema.validate(eventData, {
         abortEarly: false,
       });
       if (error) {
@@ -87,6 +94,32 @@ export class EventController {
           message: `No event type found with ID ${typeId}`,
         });
         return;
+      }
+      if (campaignId) {
+        const campaignExists =
+          await CampaignKeeperService.getCampaignById(campaignId);
+
+        if (!campaignExists) {
+          res.status(404).json({
+            error: "Invalid campaignId",
+            message: `No campaign found with ID ${campaignId}`,
+          });
+          return;
+        }
+        const newEvent = await EventService.createEvent(value);
+        try {
+          const campaignSession = await CampaignKeeperService.createSession(
+            campaignId,
+            `${EVENT_MANAGER_URL}/api/events/` + newEvent.id,
+          );
+          res.status(201).json(newEvent);
+          return;
+        } catch (error) {
+          console.error("Error creating campaign session", error);
+          res
+            .status(500)
+            .json({ error: "Internal server error", message: error.message });
+        }
       }
       const newEvent = await EventService.createEvent(value);
       res.status(201).json(newEvent);
@@ -151,7 +184,8 @@ export class EventController {
         });
         return;
       }
-      const { error: bodyError, value } = eventSchema.validate(req.body, {
+      const { campaignId, ...eventData } = req.body;
+      const { error: bodyError, value } = eventSchema.validate(eventData, {
         abortEarly: false,
       });
       if (bodyError) {
@@ -189,7 +223,32 @@ export class EventController {
         });
         return;
       }
+      if (campaignId) {
+        const campaignExists =
+          await CampaignKeeperService.getCampaignById(campaignId);
 
+        if (!campaignExists) {
+          res.status(404).json({
+            error: "Invalid campaignId",
+            message: `No campaign found with ID ${campaignId}`,
+          });
+          return;
+        }
+        const event = await EventService.updateEvent(eventId, value);
+        try {
+          const campaignSession = await CampaignKeeperService.createSession(
+            campaignId,
+            `${EVENT_MANAGER_URL}/api/events/` + event.id,
+          );
+          res.status(201).json(event);
+          return;
+        } catch (error) {
+          console.error("Error creating campaign session", error);
+          res
+            .status(500)
+            .json({ error: "Internal server error", message: error.message });
+        }
+      }
       const event = await EventService.updateEvent(eventId, value);
 
       res.status(200).json(event);

@@ -5,6 +5,9 @@ import eventRoutes from "./routes/events.route";
 import userRoutes from "./routes/users.route";
 import typeRoutes from "./routes/types.route";
 import participationRoutes from "./routes/participations.route";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
