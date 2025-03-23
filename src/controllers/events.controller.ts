@@ -11,6 +11,10 @@ import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
 import { CampaignKeeperService } from "../services/sessions.service";
+import dotenv from "dotenv";
+
+dotenv.config();
+const EVENT_MANAGER_URL = process.env.EVENT_MANAGER_URL;
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -88,9 +92,8 @@ export class EventController {
         try {
           const campaignSession = await CampaignKeeperService.createSession(
             campaignId,
-            "http://localhost:3000/api/events/" + newEvent.id,
+            `${EVENT_MANAGER_URL}/api/events/` + newEvent.id,
           );
-          console.log("Campaign session created", campaignSession);
           res.status(201).json(newEvent);
           return;
         } catch (error) {
@@ -205,9 +208,8 @@ export class EventController {
         try {
           const campaignSession = await CampaignKeeperService.createSession(
             campaignId,
-            "http://localhost:3000/api/events/" + event.id,
+            `${EVENT_MANAGER_URL}/api/events/` + event.id,
           );
-          console.log("Campaign session created", campaignSession);
           res.status(201).json(event);
           return;
         } catch (error) {

@@ -1,9 +1,14 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
+const CAMPAIGN_KEEPER_URL = process.env.CAMPAIGN_KEEPER_URL;
+
 export class CampaignKeeperService {
   static async getCampaignById(campaignId) {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/campaigns/${campaignId}`,
+        `${CAMPAIGN_KEEPER_URL}/api/campaigns/${campaignId}`,
       );
       return response.data;
     } catch (error) {
@@ -26,17 +31,15 @@ export class CampaignKeeperService {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/sessions",
+        `${CAMPAIGN_KEEPER_URL}/api/sessions`,
         sessionData,
       );
       return response.data;
     } catch (error) {
       if (error.response) {
-        // Récupère le message d'erreur de Campaign Keeper
         const errorMessage =
           error.response.data.message || "Unknown error from Campaign Keeper";
 
-        // Génère une erreur propre avec le message extrait
         throw new Error(errorMessage);
       }
       throw new Error(
