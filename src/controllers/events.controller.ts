@@ -10,6 +10,7 @@ import { paginationSchema } from "../schemas/types.schema";
 import { ParticipationResponse } from "../entities/participations.entity";
 import { TypeService } from "../services/types.service";
 import { UsersService } from "../services/users.service";
+import { SessionService } from "../services/sessions.service";
 
 export class EventController {
   static async getEvents(req: Request, res: Response) {
@@ -40,7 +41,8 @@ export class EventController {
 
   static async createEvent(req: Request, res: Response) {
     try {
-      const { error, value } = eventSchema.validate(req.body, {
+      const { campaignId, ...eventData } = req.body;
+      const { error, value } = eventSchema.validate(eventData, {
         abortEarly: false,
       });
       if (error) {
@@ -72,7 +74,19 @@ export class EventController {
         return;
       }
       const newEvent = await EventService.createEvent(value);
-      res.status(201).json(newEvent);
+      try {
+        const campaignSession = await SessionService.createSession(
+          campaignId,
+          "event",
+        );
+        console.log("Campaign session created", campaignSession);
+        res.status(201).json(newEvent);
+      } catch (error) {
+        console.error("Error creating campaign session", error);
+        res
+          .status(500)
+          .json({ error: "Internal server error", message: error.message });
+      }
     } catch (error) {
       console.error("Server Error:", error);
       res
